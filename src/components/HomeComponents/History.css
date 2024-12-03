@@ -1,0 +1,57 @@
+.historyContainer {
+    padding: 20px;
+    width: 100%;
+}
+
+.jaisodp {
+    overflow-x: scroll; /* Permitir desplazamiento horizontal */
+    scrollbar-width: none; /* Ocultar barra de desplazamiento en Firefox */
+}
+
+.jaisodp::-webkit-scrollbar {
+    display: none; /* Ocultar barra de desplazamiento en Chrome, Safari y Edge */
+}
+
+.svgHistoryClock {
+    width: 24px;
+    height: 24px;
+}
+
+.aksdjfb {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rowHistoryclock {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.welcomeMessage {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+
+}
+.loadingSpinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid black; /* Black color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

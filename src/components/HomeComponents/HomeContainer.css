@@ -1,0 +1,11 @@
+.homeContainer{
+    margin-bottom: 200px;
+    width: 100%; /* Limitar el ancho del contenedor */
+    overflow-y: scroll;
+    height: calc(100vh - 66px);
+}
+
+
+.homeContainer::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari y Edge */
+}

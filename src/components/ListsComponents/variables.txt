@@ -1,0 +1,7 @@
+tipo de alimento
+probado o no
+alergia o no
+alfabetico
+
+ses puede mostrar como columnas con cada cosa arriba
+tipo excel 

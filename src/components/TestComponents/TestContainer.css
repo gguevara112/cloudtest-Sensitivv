@@ -1,0 +1,10 @@
+.testContainer {
+    padding: 20px;
+    width: 100%; /* Limitar el ancho del contenedor */
+    height: calc(100vh - px);
+    overflow: scroll;
+}
+
+.testContainer::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Edge */
+}

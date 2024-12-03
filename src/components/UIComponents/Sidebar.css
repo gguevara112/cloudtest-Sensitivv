@@ -1,0 +1,96 @@
+.containerSidebar{
+    width: 300px;
+    background-color: #FBFBFD;
+    height: 100%;
+}
+
+.containerButtons{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    padding: 30px 12px 0 12px ;
+
+}
+
+.divnewTestButtonSidebar{
+    padding:0 10px 10px 10px;
+
+}
+
+.newTestButtonSidebar{
+    height: 56px;
+    background-color: #0071eb ;
+    border-radius: 22px;
+
+
+}
+
+.splitSumandText{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.iconsplitSumandText{
+    width: 34px;
+    width: 34px;
+}
+.textsplitSumandText{
+    color:white;
+}
+
+
+
+.buttonShaper{
+    border-radius: 22px;
+    height: 44px;
+    background-color: #FBFBFD;
+    border:2px solid #FBFBFD;
+}
+
+.buttonShaper:hover{
+    background-color: #f0f0f3;
+    border:2px solid #f0f0f3;
+}
+
+
+
+
+.buttonsSplit{
+    display: flex;
+    justify-content:space-between; /* Un contenido a la izq y otro a la derecha */
+    align-items:center; /* Alineación vertical de los elementos */
+    height: 100%;
+    gap:20px;
+}
+
+
+
+
+.iconButton{
+    margin-left: 24px;
+    height:28px;
+    width: 28px;
+    align-items: center;
+
+}
+
+
+
+.textButton{
+    font-size: 16px;
+
+
+}
+
+
+
+
+.buttonShaper.active {
+    background-color: #e7e6ea; /* Naranja */
+    border: 2px solid #e7e6ea;
+}
+
+.textButton.active {
+    color: white; /* Opcional: cambiar el color del texto */
+}
+

@@ -1,0 +1,58 @@
+# Database
+
+## Table: `user`
+| Field              | Type     | Description                                  |
+|--------------------|----------|----------------------------------------------|
+| `userID`           | string   | Unique identifier for the user               |
+| `name`             | string   | Name of the user                             |
+| `email`            | string   | User's email address                         |
+| `password`         | string   | User's password (stored with SHA3)           |
+| `language`         | string   | User's preferred language                    |
+| `trialPeriodDays`  | integer  | Trial period in days (value between 2 and 5) |
+
+## Table: `productnotes`
+| Field        | Type     | Description                                     |
+|--------------|----------|-------------------------------------------------|
+| `userID`     | string   | User's identifier                               |
+| `itemID`     | string   | Product identifier                              |
+| `note`       | string   | Note saved about the product                    |
+| `dateCreated`| date     | Date the note was created                       |
+
+## Table: `wishlist`
+| Field          | Type      | Description                                        |
+|----------------|-----------|----------------------------------------------------|
+| `userID`       | string    | User's identifier                                  |
+| `itemID`       | string    | Identifier of the item in the wishlist             |
+| `dateCreated`  | date      | Date the wishlist entry was created                |
+| `updatedAt`    | date      | Date the wishlist entry was last updated           |
+
+## Table: `testmade`
+| Field                 | Type      | Description                                     |
+|-----------------------|-----------|-------------------------------------------------|
+| `userID`              | string    | User's identifier                               |
+| `itemID`              | string    | Identifier of the item related to the test      |
+| `dateCreated`         | date      | Date the test was created                       |
+| `DaysTestSelected`  | integer  | Trial period in days (value between 2 and 5) |
+
+## Table: `listsensitivity`
+| Field        | Type      | Description                                           |
+|--------------|-----------|-------------------------------------------------------|
+| `userID`     | string    | User's identifier                                     |
+| `itemID`     | string    | Item identifier                                       |
+| `category`   | enum      | Category (allergy, sensitivity, without allergy)      |
+
+## Table: `history`
+| Field          | Type      | Description                                         |
+|----------------|-----------|-----------------------------------------------------|
+| `userID`       | string    | User's identifier                                   |
+| `itemID`       | string    | Identifier of the item in the history               |
+| `dateAccessed` | date      | Date the user accessed the item                     |
+
+## Table: `articles`
+| Field       | Type      | Description                                           |
+|-------------|-----------|-------------------------------------------------------|
+| `title`     | string    | Title of the article                                  |
+| `content`   | string    | Article content                                       |
+| `author`    | string    | Author of the article                                 |
+| `createdAt` | date      | Date the article was created                          |
+| `updatedAt` | date      | Date the article was last updated                     |

@@ -1,0 +1,86 @@
+.wnd {
+  padding: 40px;
+}
+
+.weekCalendarContainer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.weekDay {
+  position: relative;
+  text-align: center;
+  flex: 1;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 80px;
+  max-width: 120px;
+}
+
+.notificationCircle {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: #3498db;
+  border-radius: 50%;
+}
+
+.dayName {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.dayNumber {
+  font-size: 24px;
+  color: #3498db;
+}
+
+/* Media query para pantallas pequeñas (dispositivos móviles) */
+@media (max-width: 768px) {
+  .weekCalendarContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .weekDay {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .dayNumber {
+    font-size: 20px;
+  }
+
+  .dayName {
+    font-size: 16px;
+  }
+}
+
+/* Media query para pantallas extra pequeñas (por ejemplo, teléfonos) */
+@media (max-width: 480px) {
+  .weekDay {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .dayNumber {
+    font-size: 18px;
+  }
+
+  .dayName {
+    font-size: 14px;
+  }
+}

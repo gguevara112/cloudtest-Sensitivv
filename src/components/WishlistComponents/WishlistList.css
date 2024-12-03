@@ -1,0 +1,126 @@
+.wishlistContainer {
+  padding: 20px;
+  height: calc(100vh - 113px);
+}
+
+.rowfIW {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.añlsdkfj{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.starIconW {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.item-listW::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Edge */
+}
+
+.item-listW {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  padding-right: 30px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #f2f3f6;
+  border-radius: 8px;
+  background-color: #f2f3f6;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  cursor: grab;
+}
+
+.item:hover {
+  background-color: #dee2e7;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item.dragged {
+  opacity: 0.5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  object-fit: contain; /* Asegura que toda la imagen se muestre */
+  background-color: #ffffff; /* Rellena con blanco el espacio sobrante */
+  border-radius: 5px; /* Opcional: redondea ligeramente los bordes */
+}
+
+.item-name5 {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.testButton {
+  padding: 5px 10px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #8a5cf647;
+}
+
+.testButton:hover {
+  background-color: #8b5cf6;
+}
+
+
+.deleteButton {
+  padding: 5px 10px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #f2f3f6;
+  margin-left:10px;
+}
+
+.deleteButton:hover {
+  background-color: #f65c5c;
+}
+
+
+.loadingSpinner {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid black; /* Purple color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,50 @@
+.article-detail {
+    text-align: center;
+    padding: 20px;
+}
+
+.back-button {
+    background-color: white;
+
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: left;
+}
+
+
+
+.article-detail-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.article-detail-title {
+    font-size: 1.8em;
+    margin: 10px 0;
+    color: #333;
+}
+
+.article-detail-author {
+    font-style: italic;
+    font-size: 1em;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.article-detail-content {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}

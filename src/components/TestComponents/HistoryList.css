@@ -1,0 +1,103 @@
+.historyTestContainer {
+    padding: 20px;
+    width: 100%; /* Limitar el ancho del contenedor */
+
+  }
+
+
+  .item-list::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari y Edge */
+}
+
+  
+
+  .title{
+    font-size: 23px;
+  }
+
+
+
+  .rowfILists{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:12px;
+    padding-bottom: 10px;
+  }
+
+  .starIcon{
+    height: 24px;
+    width: 24px;
+    display: flex;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+
+
+
+  .item-list {
+    display: flex;
+    flex-direction: column; /* Asegúrate de que los elementos estén en columna */
+    align-items:baseline;
+    height: 60%;
+    width: 100%;
+    overflow-y: scroll;
+    padding-right: 30px;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0; /* Espaciado vertical */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f2f3f6; /* Color de fondo suave */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    cursor: grab; /* Cambiar el cursor a 'agarrar' */
+  }
+  
+  .item:hover {
+    background-color: #dee2e7; /* Cambiar el fondo al pasar el mouse */
+  }
+  
+  .item:active {
+    cursor: grabbing; /* Cambiar el cursor cuando se arrastra */
+  }
+  
+  .item.dragged {
+    opacity: 0.5; /* Disminuir la opacidad al arrastrar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra al arrastrar */
+  }
+  
+  .item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .item-name {
+    flex-grow: 1;
+    font-weight: bold; /* Hacer el nombre en negrita */
+  }
+  
+
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .svgHistoryofproducts{
+    height: 24px;
+    width: 24px;
+
+  }
