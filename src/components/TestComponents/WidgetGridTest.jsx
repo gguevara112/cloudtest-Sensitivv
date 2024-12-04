@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './WidgetGridTest.css';
+import { useTranslation } from 'react-i18next'; // Importar el hook de traducción
+
 
 const WidgetGridTest = () => {
+  const { t } = useTranslation(); // Hook de traducción
   const [product, setProduct] = useState({
     name: 'Producto Estático',
     imgSrc: 'https://via.placeholder.com/100',
@@ -24,7 +27,7 @@ const WidgetGridTest = () => {
           const productData = productResponse.data.product;
 
           setProduct({
-            name: productData ? productData.product_name : "Nombre no disponible",
+            name: productData ? productData.product_name : t('MnOpQrStUvWx1'),
             imgSrc: productData ? productData.image_url : "https://via.placeholder.com/100",
             lastTested: lastTest.dateCreated,
             DaysTestSelected: lastTest.DaysTestSelected,
@@ -39,26 +42,28 @@ const WidgetGridTest = () => {
   }, [userId]);
 
   const calculateRemainingTime = () => {
-    if (!product.lastTested || !product.DaysTestSelected) return 'Tiempo no disponible';
+    if (!product.lastTested || !product.DaysTestSelected) return t('MnOpQrStUvWx2') ;
 
     const lastTestDate = new Date(product.lastTested);
     const endTime = new Date(lastTestDate.getTime() + product.DaysTestSelected * 24 * 60 * 60 * 1000);
     const now = new Date();
     const remainingTime = endTime - now;
 
-    if (remainingTime <= 0) return 'Tiempo expirado';
+    if (remainingTime <= 0) return t('MnOpQrStUvWx3');
 
     const days = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
     const hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
     const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
 
-    return `${days > 0 ? `${days} día${days > 1 ? 's' : ''} ` : ''}${hours} hr${hours !== 1 ? 's' : ''} ${minutes} min`;
-  };
+    return `${days > 0 ? `${days} ${t(days > 1 ? 'MnOpQrStUvWx8' : 'MnOpQrStUvWx9')} ` : ''}` +
+    `${hours > 0 ? `${hours} ${t(hours > 1 ? 'MnOpQrStUvWx10' : 'MnOpQrStUvWx11')} ` : ''}` +
+    `${minutes} ${t(minutes > 1 ? 'MnOpQrStUvWx12' : 'MnOpQrStUvWx13')}`;
+};
 
   const buttonLabels = [
-    { text: 'Critic', color: '#ed0000ff' },
-    { text: 'Sensitive', color: '#ffdb22ff' },
-    { text: 'Safe', color: '#80d425ff' },
+    { text: t('MnOpQrStUvWx4'), color: '#ed0000ff' },
+    { text: t('MnOpQrStUvWx5'), color: '#ffdb22ff' },
+    { text: t('MnOpQrStUvWx6'), color: '#80d425ff' },
   ];
 
   return (
@@ -77,7 +82,7 @@ const WidgetGridTest = () => {
             {calculateRemainingTime()}
           </div>
           <div className="timeleftfortestText">
-            Tiempo restante de la prueba
+           {t('MnOpQrStUvWx7')}
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 // Test.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './HistoryList.css';
 
@@ -9,6 +10,7 @@ const HistoryList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const userId = localStorage.getItem('userId');
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Configurar el hook de traducción
 
   useEffect(() => {
     const fetchTests = async () => {
@@ -25,7 +27,7 @@ const HistoryList = () => {
 
             return {
               id: test._id,
-              name: product ? product.product_name : "Nombre no disponible",
+              name: product ? product.product_name : t('MnOpQrStUvWxA'),
               imgSrc: product ? product.image_url : "https://via.placeholder.com/100",
               lastTested: test.dateCreated,
               DaysTestSelected: test.DaysTestSelected,
@@ -59,7 +61,7 @@ const HistoryList = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>
         </div>
-        <div className='aksdjfb'>History of tested products</div>
+        <div className='aksdjfb'>{t('MnOpQrStUvWxB')}</div>
       </div>
 
       {isLoading ? (
@@ -71,10 +73,10 @@ const HistoryList = () => {
               <img src={item.imgSrc} alt={item.name} />
               <div className="item-name">{item.name}</div>
               <div className="last-tested">
-                Última vez testeado: {new Date(item.lastTested).toLocaleString()}
+                {t('MnOpQrStUvWxC')} {new Date(item.lastTested).toLocaleString()}
               </div>
               <div className="days-test-selected">
-                Días seleccionados para la prueba: {item.DaysTestSelected}
+                 {t('MnOpQrStUvWxD')} {item.DaysTestSelected}
               </div>
             </div>
           ))}

@@ -74,6 +74,35 @@ i18n
           T3U4V5W6X7Y8: "Select number of days",
           M9N0O1P2Q3R4: "Are you sure that you want to do this test?",
           A5B6C7D8E9F0: "Continue",
+          MnOpQrStUvWx1: "No data available",
+          MnOpQrStUvWx2: "No time available",
+          MnOpQrStUvWx3:"Finished test",
+          MnOpQrStUvWx4: "Critic",
+          MnOpQrStUvWx5: "Sensitive",
+          MnOpQrStUvWx6: "Safe",
+          MnOpQrStUvWx7: "Remaining time of the test",
+          MnOpQrStUvWx8: "days",        // Plural
+          MnOpQrStUvWx9: "day",         // Singular
+          MnOpQrStUvWx10: "hours",      // Plural
+          MnOpQrStUvWx11: "hour",       // Singular
+          MnOpQrStUvWx12: "minutes",    // Plural
+          MnOpQrStUvWx13: "minute",      // Singular
+          MnOpQrStUvWxA: "No data available",
+          MnOpQrStUvWxB: "History of tested products",
+          MnOpQrStUvWxC: "Last time tested",
+          MnOpQrStUvWxD: "Days selected for the test",
+
+
+
+
+          
+          
+          
+          
+
+          
+
+
           
           
     
@@ -146,6 +175,29 @@ i18n
           T3U4V5W6X7Y8: "Selecciona el número de días",
           M9N0O1P2Q3R4: "¿Estás seguro de que deseas hacer esta prueba?",
           A5B6C7D8E9F0: "Continuar",
+          MnOpQrStUvWx1: "Nombre no disponible",
+          MnOpQrStUvWx2: "Tiempo no disponible",
+          MnOpQrStUvWx3:"Prueba finalizada",
+          MnOpQrStUvWx4: "Crítico",
+          MnOpQrStUvWx5: "Sensible",
+          MnOpQrStUvWx6: "Seguro",
+          MnOpQrStUvWx7: "Tiempo restante de la prueba",
+          MnOpQrStUvWx8: "días",        // Plural
+          MnOpQrStUvWx9: "día",         // Singular
+          MnOpQrStUvWx10: "horas",      // Plural
+          MnOpQrStUvWx11: "hora",       // Singular
+          MnOpQrStUvWx12: "minutos",    // Plural
+          MnOpQrStUvWx13: "minuto",      // Singular
+          MnOpQrStUvWxA: "Nombre no disponible",
+          MnOpQrStUvWxB: "Historial de pruebas de productos",
+          MnOpQrStUvWxC: "Última vez probado",
+          MnOpQrStUvWxD: "Días seleccionados para la prueba",
+
+
+
+          
+          
+
           
         }
       }
