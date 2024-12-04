@@ -10,6 +10,7 @@ const ProductDetailForUser = () => {
   const [selectedButton, setSelectedButton] = useState(null);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [showTestPopup, setShowTestPopup] = useState(false);
+  const [showToast, setShowToast] = useState(false); // Estado para controlar el toast
   const userId = localStorage.getItem('userId');
   const selectedProductId = localStorage.getItem('selectedProductId');
   const { t } = useTranslation(); // Hook para traducir
@@ -53,6 +54,8 @@ const ProductDetailForUser = () => {
         note: notes,
         dateCreated: new Date(),
       });
+      setShowToast(true); // Mostrar el toast
+      setTimeout(() => setShowToast(false), 3000); // Ocultar el toast después de 3 segundos
     } catch (error) {
       console.error(t('MnOpQrStUvWx27'), error); // Error al guardar notas
     } finally {
@@ -84,8 +87,10 @@ const ProductDetailForUser = () => {
         updatedAt: new Date(),
       });
       setIsInWishlist(true);
+      setShowToast(true); // Mostrar el toast
+      setTimeout(() => setShowToast(false), 3000); // Ocultar el toast después de 3 segundos
     } catch (error) {
-      console.error(t('MnOpQrStUvWx29'), error); // Error al agregar a la wishlist
+      console.error('Error adding to wishlist:', error); // Mensaje de error en consola
     }
   };
 
@@ -107,18 +112,18 @@ const ProductDetailForUser = () => {
             </button>
           ))}
         </div>
-      </div> 
+      </div>
 
       <div className="notes-section">
         <h3>{t('MnOpQrStUvWx31')}</h3> {/* Notes */}
-        <textarea value={notes} onChange={handleNotesChange} placeholder={t('MnOpQrStUvWx32')} />
+        <textarea value={notes}  maxLength="1500" onChange={handleNotesChange} placeholder={t('MnOpQrStUvWx32')} />
         <button className="save-notes-button" onClick={handleNotesSave} disabled={isSaving}>
           {isSaving ? t('MnOpQrStUvWx33') : t('MnOpQrStUvWx34')}
         </button>
       </div>
 
       <div className="buttonsss">
-        <div className='optaionsndf'>{t('MnOpQrStUvWx35')}</div> {/* Options */}
+        <div className="optaionsndf">{t('MnOpQrStUvWx35')}</div> {/* Options */}
         <button className="wishlist-button" onClick={handleAddToWishlist} disabled={isInWishlist}>
           {isInWishlist ? t('MnOpQrStUvWx36') : t('MnOpQrStUvWx37')}
         </button>
@@ -126,6 +131,29 @@ const ProductDetailForUser = () => {
           {t('MnOpQrStUvWx38')}
         </button>
       </div>
+
+      {/* Toast con Bootstrap */}
+      {showToast && (
+        <div
+          className="toast-container position-fixed bottom-0 end-0 p-3"
+          style={{ zIndex: 1055 }}
+        >
+          <div className="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div className="toast-header">
+              <strong className="me-auto">Success</strong> {/* Título del toast */}
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowToast(false)}
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="toast-body">
+               {t('MnOpQrStUvWx40')}
+            </div>
+          </div>
+        </div>
+      )}
 
       {showTestPopup && (
         <TestPopup

@@ -115,6 +115,9 @@ i18n
           MnOpQrStUvWx36: "In Wishlist",
           MnOpQrStUvWx37: "Add to Wishlist",
           MnOpQrStUvWx38: "Start test",
+          MnOpQrStUvWx40: "Correctly saved ",  
+          MnOpQrStUvWx41: "Item Removed",
+
 
 
 
@@ -240,6 +243,10 @@ i18n
           MnOpQrStUvWx36: "En la lista de deseos",
           MnOpQrStUvWx37: "Agregar a la lista de deseos",
           MnOpQrStUvWx38: "Iniciar prueba",
+          MnOpQrStUvWx40: "Agregado correctamente", 
+          MnOpQrStUvWx41: "Elemento Eliminado", 
+          
+
 
 
 

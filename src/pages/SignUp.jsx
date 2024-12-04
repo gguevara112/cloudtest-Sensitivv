@@ -1,4 +1,3 @@
-// SignUp.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +9,7 @@ const SignUp = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
@@ -47,7 +46,6 @@ const SignUp = () => {
       return;
     }
 
-    // Detectar idioma del navegador o asignar inglés si no está disponible
     const browserLanguage = i18n.language || 'en';
     const userLanguage = ['en', 'es'].includes(browserLanguage) ? browserLanguage : 'en';
 
@@ -55,15 +53,15 @@ const SignUp = () => {
       const response = await fetch('http://localhost:5001/api/users', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           password: formData.password,
-          language: userLanguage,          // Asignar idioma detectado o inglés
-          trialPeriodDays: 5               // Valor predeterminado
-        })
+          language: userLanguage,
+          trialPeriodDays: 5,
+        }),
       });
 
       if (response.status === 409) {
@@ -80,7 +78,7 @@ const SignUp = () => {
 
       navigate('/');
     } catch (error) {
-      console.error("Error al registrar usuario:", error);
+      console.error('Error al registrar usuario:', error);
       alert(t('LjRtKqXsVwMn')); // Hubo un error al registrar el usuario. Inténtalo de nuevo.
     }
   };
@@ -94,76 +92,72 @@ const SignUp = () => {
       <div className="signup-box">
         <h2>{t('PgLrTqJsXzVm')}</h2> {/* Crear Cuenta */}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>{t('JqPwFxTlRvNw')}</label> {/* Nombre */}
+          <div className="form-floating">
             <input
               type="text"
+              className="form-control"
+              id="floatingName"
               name="name"
+               maxLength="50"
               value={formData.name}
               onChange={handleInputChange}
+              placeholder={t('JqPwFxTlRvNw')} // Nombre
               required
             />
+            <label htmlFor="floatingName">{t('JqPwFxTlRvNw')}</label>
           </div>
-          <div className="form-group">
-            <label>{t('FrWpNtQjLzMv')}</label> {/* Email */}
+          <div className="form-floating mt-3">
             <input
               type="email"
+              className="form-control"
+              id="floatingEmail"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
+              placeholder={t('FrWpNtQjLzMv')} // Email
               required
             />
+            <label htmlFor="floatingEmail">{t('FrWpNtQjLzMv')}</label>
           </div>
-          <div className="form-group">
-            <label>{t('LfNrTjPwXzQk')}</label> {/* Contraseña */}
-            <div className="password-input-container">
-              <input
-                type={passwordVisible ? "text" : "password"}
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="toggle-password-button"
-              >
-                {passwordVisible ? t('PqFsRvJmXtQl') : t('LmPsQwNrTvFx')} {/* Mostrar/Ocultar */}
-              </button>
-            </div>
+          <div className="form-floating mt-3">
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              className={`form-control ${!passwordValid && formData.password.length > 0 ? 'is-invalid' : ''}`}
+              id="floatingPassword"
+              name="password"
+               maxLength="50"
+              value={formData.password}
+              onChange={handleInputChange}
+              placeholder={t('LfNrTjPwXzQk')} // Contraseña
+              required
+            />
+            <label htmlFor="floatingPassword">{t('LfNrTjPwXzQk')}</label>
             {!passwordValid && formData.password.length > 0 && (
               <p className="error-text2">{t('HsJkTrLvBnLk')}</p>
             )}
           </div>
-          <div className="form-group">
-            <label>{t('XnLqTvFrRmNs')}</label> {/* Confirmar Contraseña */}
-            <div className="password-input-container">
-              <input
-                type={passwordVisible ? "text" : "password"}
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                required
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="toggle-password-button"
-              >
-                {passwordVisible ? t('PqFsRvJmXtQl') : t('LmPsQwNrTvFx')} {/* Mostrar/Ocultar */}
-              </button>
-            </div>
+          <div className="form-floating mt-3">
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              className={`form-control ${!passwordsMatch && formData.confirmPassword.length > 0 ? 'is-invalid' : ''}`}
+              id="floatingConfirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              placeholder={t('XnLqTvFrRmNs')} // Confirmar Contraseña
+              required
+            />
+            <label htmlFor="floatingConfirmPassword">{t('XnLqTvFrRmNs')}</label>
             {!passwordsMatch && formData.confirmPassword.length > 0 && (
               <p className="error-text2">{t('FkLnRtQwXzTv')}</p>
             )}
           </div>
-          <button type="submit" className="signup-button" disabled={!passwordValid || !passwordsMatch}>
+          <button type="submit" className="btn btn-primary mt-3" disabled={!passwordValid || !passwordsMatch}>
             {t('JsRwNqTwXlBt')} {/* Registrarse */}
           </button>
         </form>
-        <div className="signup-footer">
-          <button onClick={handleLoginClick} className="login-link">
+        <div className="signup-footer mt-4">
+          <button onClick={handleLoginClick} className="btn btn-link">
             {t('LqKsTwFxRjXp')} {/* ¿Ya tienes una cuenta? Inicia Sesión */}
           </button>
         </div>

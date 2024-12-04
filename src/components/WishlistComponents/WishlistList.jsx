@@ -9,6 +9,7 @@ const Wishlist = () => {
   const [items, setItems] = useState([]);
   const [draggedItem, setDraggedItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false); // Estado para controlar el toast
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
   const { t } = useTranslation();
@@ -70,6 +71,8 @@ const Wishlist = () => {
     try {
       await axios.delete(`http://localhost:5001/api/wishlist/${userId}/${itemId}`);
       setItems(items.filter(item => item.itemID !== itemId));
+      setShowToast(true); // Mostrar el toast
+      setTimeout(() => setShowToast(false), 3000); // Ocultar el toast después de 3 segundos
     } catch (error) {
       console.error("Error al eliminar el producto de la wishlist:", error);
     }
@@ -107,6 +110,29 @@ const Wishlist = () => {
               <button className="deleteButton" onClick={() => handleDelete(item.itemID)}>{t('TuVwXyZaBcDe')}</button> {/* Delete */}
             </div>
           ))}
+        </div>
+      )}
+
+                  {/* Toast con Bootstrap */}
+      {showToast && (
+        <div
+          className="toast-container position-fixed bottom-0 end-0 p-3"
+          style={{ zIndex: 1055 }}
+        >
+          <div className="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div className="toast-header">
+              <strong className="me-auto">Success</strong> {/* Título del toast */}
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowToast(false)}
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="toast-body">
+               {t('MnOpQrStUvWx41')}
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -70,6 +70,8 @@ const ProfilePopup = ({ closePopup }) => {
     const userId = localStorage.getItem('userId');
     const itemID = localStorage.getItem('selectedProductId'); // Obtener el itemID desde el localStorage
     const dateCreated = new Date();
+    navigate('/test');
+
 
     if (userId) {
       try {
