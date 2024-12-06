@@ -56,78 +56,71 @@ app.get('/api/articles/:id', async (req, res) => {
     res.status(500).json({ error: "Error retrieving article" });
   }
 });
+
 // Endpoint para registrar un usuario
 app.post('/api/users', async (req, res) => {
-    try {
-      const { name, email, password } = req.body;
-  
-      // Verificación de campos requeridos
-      if (!name || !email || !password) {
-        return res.status(400).json({ error: "Alll fields are obligatory" });
-      }
-  
-      const database = client.db('sensitivv');
-      const collection = database.collection('user');
-  
-      // Verifica si el correo ya está en uso
-      const existingUser = await collection.findOne({ email });
-      if (existingUser) {
-        return res.status(409).json({ error: "The email is alredy registered, use another" });
-      }
-  
-      // Hash de la contraseña antes de guardarla
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      // Crea un objeto de usuario y lo guarda en la base de datos, con valores predeterminados para language y trialPeriodDays
-      const result = await collection.insertOne({
-        userID: new ObjectId().toString(),
-        name,
-        email,
-        password: hashedPassword,
-        language: "en",           // Valor predeterminado
-        trialPeriodDays: 5             // Valor predeterminado
-      });
-  
-      res.status(201).json({ message: "User created", userId: result.insertedId });
-    } catch (error) {
-      console.error("Error creating user:", error);
-      res.status(500).json({ error: "Error creating user" });
+  try {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'All fields are obligatory' });
     }
-  });
-  
+
+    const database = client.db('sensitivv');
+    const collection = database.collection('user');
+
+    const existingUser = await collection.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ error: 'The email is already registered, use another' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const result = await collection.insertOne({
+      userID: new ObjectId().toString(),
+      name,
+      email,
+      password: hashedPassword,
+      language: 'en',
+      trialPeriodDays: 5,
+    });
+
+    res.status(201).json({ message: 'User created', userId: result.insertedId });
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({ error: 'Error creating user' });
+  }
+});
+
 // Endpoint para iniciar sesión
 app.post('/api/login', async (req, res) => {
-    try {
-      const { email, password } = req.body;
-  
-      // Verificación de campos requeridos
-      if (!email || !password) {
-        return res.status(400).json({ error: "Email and password are required" });
-      }
-  
-      const database = client.db('sensitivv');
-      const collection = database.collection('user');
-  
-      // Busca al usuario en la base de datos
-      const user = await collection.findOne({ email });
-      if (!user) {
-        return res.status(401).json({ error: "Incorrect email or password" });
-      }
-  
-      // Compara la contraseña proporcionada con la almacenada
-      const passwordMatch = await bcrypt.compare(password, user.password);
-      if (!passwordMatch) {
-        return res.status(401).json({ error: "Incorrect email or password" });
-      }
-  
-      // Devuelve el ID y nombre del usuario
-      res.status(200).json({ userId: user.userID, name: user.name });
-    } catch (error) {
-      console.error("Login error:", error);
-      res.status(500).json({ error: "Server error" });
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required' });
     }
-  });
-  
+
+    const database = client.db('sensitivv');
+    const collection = database.collection('user');
+
+    const user = await collection.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ error: 'Incorrect email or password' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Incorrect email or password' });
+    }
+
+    res.status(200).json({ userId: user.userID, name: user.name });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 
 

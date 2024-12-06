@@ -98,7 +98,7 @@ const SignUp = () => {
               className="form-control"
               id="floatingName"
               name="name"
-               maxLength="50"
+              maxLength="50"
               value={formData.name}
               onChange={handleInputChange}
               placeholder={t('JqPwFxTlRvNw')} // Nombre
@@ -125,7 +125,7 @@ const SignUp = () => {
               className={`form-control ${!passwordValid && formData.password.length > 0 ? 'is-invalid' : ''}`}
               id="floatingPassword"
               name="password"
-               maxLength="50"
+              maxLength="50"
               value={formData.password}
               onChange={handleInputChange}
               placeholder={t('LfNrTjPwXzQk')} // Contraseña
