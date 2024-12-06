@@ -74,7 +74,7 @@ const handleButtonClick = async (buttonIndex) => {
       category,
     });
 
-    // Mostrar el mensaje de éxito
+    // Mostrar el mensaje de éxito    
     if (response.status === 200 || response.status === 201) {
       console.log(response.data.message); // Mensaje desde el backend
     }

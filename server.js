@@ -214,7 +214,7 @@ app.post('/api/listsensitivity', async (req, res) => {
   }
 });
 
-  
+    
 // Obtener categoría de sensibilidad por usuario y itemID
 app.get('/api/listsensitivity/:userID/:itemID', async (req, res) => {
     try {
