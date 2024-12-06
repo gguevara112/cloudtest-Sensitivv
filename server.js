@@ -183,17 +183,54 @@ app.put('/api/users/:id', async (req, res) => {
     }
   });
   
-  app.post('/api/listsensitivity', async (req, res) => {
+// Endpoint para asignar la categoría de sensibilidad
+app.post('/api/listsensitivity', async (req, res) => {
+  try {
+    const { userID, itemID, category } = req.body;
+    const database = client.db('sensitivv');
+    const collection = database.collection('listsensitivity');
+
+    // Verifica si ya existe una categoría para este producto y usuario
+    const existingEntry = await collection.findOne({ userID, itemID });
+
+    if (existingEntry) {
+      if (existingEntry.category === category) {
+        return res.status(200).json({ message: "El producto ya está en esta categoría." });
+      }
+      // Si la categoría es diferente, actualiza la entrada
+      await collection.updateOne(
+        { userID, itemID },
+        { $set: { category } }
+      );
+      return res.status(200).json({ message: "Categoría actualizada exitosamente." });
+    }
+
+    // Si no existe, inserta una nueva entrada
+    await collection.insertOne({ userID, itemID, category });
+    res.status(201).json({ message: "Categoría de sensibilidad guardada exitosamente." });
+  } catch (error) {
+    console.error("Error al guardar la categoría de sensibilidad:", error);
+    res.status(500).json({ error: "Error al guardar la categoría de sensibilidad." });
+  }
+});
+
+  
+// Obtener categoría de sensibilidad por usuario y itemID
+app.get('/api/listsensitivity/:userID/:itemID', async (req, res) => {
     try {
-      const { userID, itemID, category } = req.body;
+      const { userID, itemID } = req.params;
       const database = client.db('sensitivv');
       const collection = database.collection('listsensitivity');
   
-      await collection.insertOne({ userID, itemID, category });
-      res.status(201).json({ message: "Categoría de sensibilidad guardada exitosamente" });
+      const sensitivity = await collection.findOne({ userID, itemID });
+      if (!sensitivity) {
+        return res.status(404).json({ error: "No se encontró ninguna categoría de sensibilidad para este producto y usuario." });
+      }
+  
+      res.status(200).json(sensitivity);
     } catch (error) {
-      console.error("Error al guardar la categoría de sensibilidad:", error);
-      res.status(500).json({ error: "Error al guardar la categoría de sensibilidad" });
+      console.error("Error al obtener la categoría de sensibilidad:", error);
+      res.status(500).json({ error: "Error en el servidor" });
     }
   });
   
@@ -233,25 +270,6 @@ app.get('/api/productnotes/:userID/:itemID', async (req, res) => {
 
 
 
-// Obtener categoría de sensibilidad por usuario y itemID
-app.get('/api/listsensitivity/:userID/:itemID', async (req, res) => {
-    try {
-      const { userID, itemID } = req.params;
-      const database = client.db('sensitivv');
-      const collection = database.collection('listsensitivity');
-  
-      const sensitivity = await collection.findOne({ userID, itemID });
-      if (!sensitivity) {
-        return res.status(404).json({ error: "No se encontró ninguna categoría de sensibilidad para este producto y usuario." });
-      }
-  
-      res.status(200).json(sensitivity);
-    } catch (error) {
-      console.error("Error al obtener la categoría de sensibilidad:", error);
-      res.status(500).json({ error: "Error en el servidor" });
-    }
-  });
-  
 // Obtener la wishlist de un usuario
 app.get('/api/wishlist/:userID', async (req, res) => {
   try {

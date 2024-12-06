@@ -63,20 +63,29 @@ const ProductDetailForUser = () => {
     }
   };
 
-  const handleButtonClick = async (buttonIndex) => {
-    setSelectedButton(buttonIndex);
-    const category = buttonIndex === 0 ? 'Reactive' : buttonIndex === 1 ? 'Sensitive' : 'Safe';
+const handleButtonClick = async (buttonIndex) => {
+  setSelectedButton(buttonIndex);
+  const category = buttonIndex === 0 ? 'Reactive' : buttonIndex === 1 ? 'Sensitive' : 'Safe';
 
-    try {
-      await axios.post(`http://localhost:5001/api/listsensitivity`, {
-        userID: userId,
-        itemID: selectedProductId,
-        category,
-      });
-    } catch (error) {
-      console.error(t('MnOpQrStUvWx28'), error); // Error al guardar categoría
+  try {
+    const response = await axios.post(`http://localhost:5001/api/listsensitivity`, {
+      userID: userId,
+      itemID: selectedProductId,
+      category,
+    });
+
+    // Mostrar el mensaje de éxito
+    if (response.status === 200 || response.status === 201) {
+      console.log(response.data.message); // Mensaje desde el backend
     }
-  };
+
+    // Actualizar la interfaz con la nueva categoría
+    setSelectedButton(buttonIndex);
+  } catch (error) {
+    console.error(t('MnOpQrStUvWx28'), error); // Error al guardar categoría
+  }
+};
+
 
   const handleAddToWishlist = async () => {
     try {

@@ -93,3 +93,26 @@
     padding-left: 20px; 
 
 }
+
+@media (max-width: 480px) {
+    .containerProduct {
+        background-color: #f2f3f6;
+        width: 150px;    
+        height: 310px;
+        border: 2px solid #f2f3f6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        margin: 5px 0;
+        border-radius: 8px;
+        transition: background-color 0.3s, border 0.3s;
+    }
+    .products-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding: 10px;
+    }
+  }
