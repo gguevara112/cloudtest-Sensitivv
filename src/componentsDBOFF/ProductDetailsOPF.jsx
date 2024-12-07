@@ -59,9 +59,7 @@ const ProductDetailsOPF = () => {
           <strong>{t('MnOpQrStUvWx20')}:</strong> {product.ingredients_text || t('MnOpQrStUvWx21')}
         </p>{' '}
         {/* Ingredientes */}
-        <p>
-          <strong>{t('MnOpQrStUvWx22')}:</strong> {localStorage.getItem('selectedProductId')}
-        </p>{' '}
+  
         {/* ID del producto */}
       </div>
     </div>

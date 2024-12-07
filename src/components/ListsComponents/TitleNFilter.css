@@ -53,13 +53,9 @@
   justify-content: center;
   gap: 15px;
   margin-top: 20px;
-
-
 }
 
 .circle-buttonz {
- 
-
   background-color: white;
   border: 1px solid #ccc; /* Borde del botón */
   border-radius: 50px; /* Bordes redondeados, simulando un skate */
