@@ -6,7 +6,7 @@ import './ProductDetail.css';
 const ProductDetailsOPF = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation(); // Hook para traducir
+  const { t } = useTranslation(); 
 
   useEffect(() => {
     const selectedProductId = localStorage.getItem('selectedProductId');

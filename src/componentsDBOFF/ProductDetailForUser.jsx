@@ -24,25 +24,28 @@ const ProductDetailForUser = () => {
   useEffect(() => {
     const fetchUserProductDetails = async () => {
       try {
+        // Obtener las notas
         const notesResponse = await axios.get(`http://localhost:5001/api/productnotes/${userId}/${selectedProductId}`);
-        if (notesResponse.data) setNotes(notesResponse.data.note);
-
+        setNotes(notesResponse.data?.note || ''); // Usa la nota de la respuesta o un valor vacío
+  
+        // Obtener la reacción
         const sensitivityResponse = await axios.get(`http://localhost:5001/api/listsensitivity/${userId}/${selectedProductId}`);
-        if (sensitivityResponse.data) {
+        if (sensitivityResponse.data?.category) {
           const category = sensitivityResponse.data.category;
           setSelectedButton(category === 'Reactive' ? 0 : category === 'Sensitive' ? 1 : 2);
         }
-
+  
+        // Verificar si está en la wishlist
         const wishlistResponse = await axios.get(`http://localhost:5001/api/wishlist/${userId}/${selectedProductId}`);
         setIsInWishlist(wishlistResponse.data !== null);
       } catch (error) {
         console.error(t('MnOpQrStUvWx26'), error); // Error al cargar datos
       }
     };
-
+  
     if (userId && selectedProductId) fetchUserProductDetails();
   }, [userId, selectedProductId, t]);
-
+  
   const handleNotesChange = (event) => setNotes(event.target.value);
 
   const handleNotesSave = async () => {
@@ -130,7 +133,7 @@ const handleButtonClick = async (buttonIndex) => {
           {isSaving ? t('MnOpQrStUvWx33') : t('MnOpQrStUvWx34')}
         </button>
       </div>
-
+ 
       <div className="buttonsss">
         <div className="optaionsndf">{t('MnOpQrStUvWx35')}</div> {/* Options */}
         <button className="wishlist-button" onClick={handleAddToWishlist} disabled={isInWishlist}>

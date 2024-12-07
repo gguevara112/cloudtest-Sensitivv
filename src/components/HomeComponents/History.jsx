@@ -15,6 +15,7 @@ const History = () => {
   const userName = localStorage.getItem('userName') || 'User'; // Obtiene el nombre del usuario desde localStorage
   const { t } = useTranslation(); // Hook de traducción
 
+
   useEffect(() => {
     const fetchRecentlyViewed = async () => {
       try {
@@ -32,7 +33,8 @@ const History = () => {
   }, [userId]);
 
   const handleProductClick = (id) => {
-    setSelectedProductId(id);
+    // Guardar el id del producto en localStorage antes de redirigir
+    localStorage.setItem('selectedProductId', id);
     navigate('/product');
   };
 

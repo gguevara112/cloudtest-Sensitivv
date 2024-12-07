@@ -20,12 +20,10 @@ const Wishlist = () => {
         setIsLoading(true);
         const response = await axios.get(`http://localhost:5001/api/wishlist/${userId}`);
         const wishlistItems = response.data;
-
         const detailedItems = await Promise.all(
           wishlistItems.map(async (item) => {
             const productResponse = await axios.get(`https://world.openfoodfacts.org/api/v0/product/${item.itemID}.json`);
             const product = productResponse.data.product;
-
             return {
               id: item._id,
               name: product.product_name,
@@ -71,6 +69,7 @@ const Wishlist = () => {
     try {
       await axios.delete(`http://localhost:5001/api/wishlist/${userId}/${itemId}`);
       setItems(items.filter(item => item.itemID !== itemId));
+      navigate('/wishlist');
       setShowToast(true); // Mostrar el toast
       setTimeout(() => setShowToast(false), 3000); // Ocultar el toast después de 3 segundos
     } catch (error) {
