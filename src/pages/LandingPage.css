@@ -1,0 +1,79 @@
+/* Contenedor general */
+.ScrollWrapper {
+    height: 200vh; /* Altura grande para permitir desplazamiento */
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Animación inicial */
+.InitialSection {
+    height: 100vh; /* Ocupa toda la pantalla inicial */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.InitialSection.Animate .BlackSquare {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.InitialSection.Stop .BlackSquare {
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.InitialSection.Animate .RedSquare {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.InitialSection.Stop .RedSquare {
+    transform: translateY(50px);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Cuadrado negro */
+.BlackSquare {
+    background-color: black;
+    width: 100%;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cuadrado rojo */
+.RedSquare {
+    background-color: red;
+    width: 100%;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sección de contenido adicional */
+.ContentSection {
+    background-color: white;
+    padding: 20px;
+}
+
+.BlueDiv {
+    background-color: blue;
+    width: 100%;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}

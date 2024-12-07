@@ -13,6 +13,7 @@ import Articles from './pages/Articles';
 import LogIn from './pages/LogIn'; 
 import SignUp from './pages/SignUp'; 
 import ShowResults from "./pages/ShowResults"
+import LandingPage from './pages/LandingPage';
 
 import ProductSearchBox from './componentsDBOFF/ProductSearchBox';
 import ProductSearch from './componentsDBOFF/ProductSearch';
@@ -33,7 +34,7 @@ const App = () => {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/lists" element={<Lists />} />
             <Route path="/articles" element={<Articles />} />
-            <Route path="/" element={<LogIn />} />
+            <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/productsearchbox" element={<ProductSearchBox />} />
             <Route path="/productsearch" element={<ProductSearch />} />
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/showresults" element={<ShowResults />} />
             <Route path="/ProductDetailForUser" element={<ProductDetailForUser />} />
             <Route path="/ProductDetailsOPF" element={<ProductDetailsOPF />} />
+            <Route path="/" element={<LandingPage />} />
 
 
             

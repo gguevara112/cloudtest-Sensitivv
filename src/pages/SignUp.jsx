@@ -76,7 +76,7 @@ const SignUp = () => {
       const data = await response.json();
       console.log('Cuenta creada:', data);
 
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       console.error('Error al registrar usuario:', error);
       alert(t('LjRtKqXsVwMn')); // Hubo un error al registrar el usuario. Inténtalo de nuevo.
