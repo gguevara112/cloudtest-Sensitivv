@@ -1,0 +1,309 @@
+.containerHeader {
+  background-color: #ffffff;
+  position:fixed  ;
+  padding: 9px;
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); /* Sombra solo en la parte inferior */
+
+}
+
+.headerContentSplit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  gap: 10px;
+}
+
+/* Icon */
+
+.hamIconAndSearch {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+
+}
+
+
+.hamAndIconn {
+  display: flex;
+  flex-direction: row;
+  width: 268px;
+  align-items: center; 
+}
+
+@media (max-width: 768px) {
+  .hamAndIconn {
+    width: auto; /* Permite que el ancho sea flexible en pantallas medianas */
+  }
+
+  .brand {
+    display: none; /* Oculta ambos elementos en pantallas pequeñas */
+  }
+  .searchContainer{
+    margin-left: 30px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .hamAndIconn {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos en pantallas pequeñas */
+    width: auto; /* Mantén el ancho en auto para adaptarse al contenido */
+  }
+}
+
+@media (max-width: 480px) {
+
+  .brand {
+    display: none; /* Oculta ambos elementos en pantallas pequeñas */
+  }
+}
+.hamburgerIconB{
+  background-color: #f2f2f7;
+  border:1px solid #f2f2f7;
+  padding:0px;
+  margin:0px;
+  width: 25px;
+  padding-left:20px;
+
+
+}
+
+
+.iiioookkk{
+  display: flex;
+  align-items: left; 
+}
+
+.hamburgerIconn {
+  padding-right: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: #f2f2f7;
+  border:1px solid #f2f2f7;
+  padding:0px;
+  margin:0px;
+
+}
+
+.hamburgerIconB:hover{
+  border: 1px solid #f2f2f7;
+}
+
+.senstivvIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: 500;
+  color: #5f6368;
+  align-items: left; 
+  padding-top: 18px;  
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+}
+
+.okmnjikkshj{
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+}
+
+/* Searchbox */
+
+.searchContainer {
+
+  width: 100%;
+  height: 100%;
+}
+
+.searchShaper {
+  max-width: 720px;
+  height: 100%;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.searchStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  border-radius: 24px;
+  height: 100%;
+}
+
+.searchIcon {
+  width: 24px;
+  height: 24px;
+  margin: 0 20px;
+}
+
+.searchBar {
+  border: none;
+  width: 85%;
+  height: 100%;
+  outline: none;
+}
+
+.spaceSearchBox {
+  width: 24px;
+}
+
+/* Profile pic */
+
+.profile {
+  width: auto;
+  height: 100%;
+  margin: 0 20px;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:20px;
+}
+
+.imgStyle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.settingButtonprofile{
+  padding:0px;
+  margin:0px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f2f2f7;
+  border:none;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .hamAndIcon {
+    width: 200px; /* Ajuste del ancho para pantallas más pequeñas */
+  }
+
+  .brand {
+    font-size: 20px; /* Reducción de tamaño de fuente en pantallas pequeñas */
+  }
+
+  .searchShaper {
+    margin: 0 10px; /* Reducción de márgenes en pantallas más pequeñas */
+  }
+
+  .searchIcon, .spaceSearchBox {
+    margin: 0 10px; /* Ajuste de márgenes en el icono de búsqueda */
+  }
+
+  .searchBar {
+    width: 80%; /* Ajuste de ancho de la barra de búsqueda */
+  }
+
+  .profile {
+    margin: 0 10px; /* Ajuste de margen en el contenedor de perfil */
+  }
+}
+
+@media (max-width: 480px) {
+  .hamAndIcon {
+    width: 150px; /* Más reducción para pantallas muy pequeñas */
+  }
+  .hamburgerIconB{
+    padding-top:10px;
+  }
+
+  .brand {
+    font-size: 18px; /* Reducción adicional del tamaño de fuente */
+    
+  }
+
+  .searchShaper {
+    margin: 0 5px;
+    padding-left: 30px;
+  }
+
+  .searchIcon, .spaceSearchBox {
+    margin: 0 5px;
+  }
+
+  .searchBar {
+    width: 75%;
+  }
+
+  .profile {
+    margin: 0 5px;
+  }
+}
+
+/* Estilo del contenedor de búsqueda y animación */
+.search-box-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Spinner de carga circular */
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 4px solid #f3f3f3; /* Color del borde externo */
+  border-top: 4px solid black; /* Color del borde superior para el efecto de giro */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  right: 10px; /* Ubicación del spinner en el lado derecho */
+}
+
+/* Animación de giro */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.searchBar {
+  border: none;
+  width: 85%;
+  height: 100%;
+  outline: none;
+  background-color: white; /* Color de fondo consistente */
+}
+
+.searchBar:disabled {
+  background-color: white; /* Mantén el mismo color al estar deshabilitado */
+  opacity: 1; /* Evita que el input se vea desvanecido */
+  color: #555; /* Ajusta el color del texto si se ve distinto */
+}
+
+
+
+.AjdfosDFKsdfJ {
+  height: 90%;
+  width: 100px;
+}
+
+.AjdfosDFKsdfJ2 {
+  height: 90%;
+  width: 100px;
+  background-color: #007bff;
+  color: #fff;
+
+  font-weight: bold;
+}
