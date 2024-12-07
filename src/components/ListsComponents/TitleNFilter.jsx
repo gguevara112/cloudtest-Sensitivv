@@ -58,6 +58,20 @@ const TitleNFilter = () => {
   return (
     <div className="asdfContainer">
       <div className="zxcvHeader">{t('QwErTyUiOpAs')}</div>
+      <div className="qwerFiltsdfersd">
+      <div class="button-containerz">
+        <button class="circle-buttonz">Cereales*</button>
+        <button class="circle-buttonz">Verduras</button>
+        <button class="circle-buttonz">Lácteos</button>
+        <button class="circle-buttonz">Panadería</button>
+        <button class="circle-buttonz">Frutas</button>
+        <button class="circle-buttonz">Bebidas</button>
+        <button class="circle-buttonz">Snacks</button>
+      </div>
+
+
+
+      </div>
       <div className="qwerFilters">
         <div className="mnbvWrapper">
           <div className="uiopIcon" onClick={() => setView('grid')}>
