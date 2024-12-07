@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { useScroll } from '@react-spring/web';
-import Header from '../components/HeaderTwo';
+import HeaderTwo from '../components/HeaderTwo';
 import './LandingPage.css';
 
 const HomeProducts = () => {
@@ -17,7 +17,7 @@ const HomeProducts = () => {
 
   return (
     <div className='innnninnnkk' >
-      <Header />
+      <HeaderTwo />
 
 <div
   style={{
@@ -41,13 +41,13 @@ const HomeProducts = () => {
     <animated.div
   style={{
     ...fadeStyle,
+    zIndex: 10, // Prioridad más alta para que esté por encima de los otros elementos 
     fontFamily: 'Helvetica',
     fontSize: '40px',
     position: 'absolute', // Posiciona el texto en el mismo espacio que el otro
     top: 0,
 
     left: 0,
-    backgroundColor: '#FFFFFF',
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -60,7 +60,7 @@ const HomeProducts = () => {
   <p>
 
 
-  <span style={{ fontWeight: 'bold' }}>Ingredients:  </span>Enriched Corn Meal (Corn Meal, Ferrous Sulfate, Niacin, Thiamin, Riboflavin, Folic Acid), Vegetable Oil (Corn, Canola, and/or Sunflower Oil), Cheese Seasoning (Whey, Cheddar Cheese [Milk,  It doesn't, Salt, Enzymes], Canola Oil, Maltodextrin [Made from Corn Oil s], Natural and Artificial Flavors, Whey Protein , Monosodium Glutamate, have to be, Citric Acid, Artificial Color [Yellow 6]), Sugar, Dextrose, High Fructose Corn Syrup, Partially Hydrogenated Soybean Oil, Modified Food Starch, Artificial Butter Flavor, Artificial Caramel Color,  so difficult, Artificial Sweeteners (Aspartame, Sucralose, Acesulfame Potassium), Soy Lecithin, Palm Kernel Oil, Sodium Caseinate, Sodium Phosphate, Disodium Inosinate, Disodium Guanylate, Sensitivv App: Make your diet easier , Barley Malt Extract, Potassium Chloride, Calcium Carbonate, Xanthan Gum, Guar Gum, Cellulose Gum, Natural Flavors, Artificial Flavors, Gelatin, Corn Syrup Solids, Salt.  
+  <span style={{ fontWeight: 'bold' , backgroundColor: "white"}}>Ingredients:  </span><span style={{  backgroundColor: "white"}}>Enriched Corn Meal (Corn Meal, Ferrous Sulfate, Niacin, Thiamin, Riboflavin, Folic Acid), Vegetable Oil (Corn, Canola, and/or Sunflower Oil), Cheese Seasoning (Whey, Cheddar Cheese [Milk,  It doesn't, Salt, Enzymes], Canola Oil, Maltodextrin [Made from Corn Oil s], Natural and Artificial Flavors, Whey Protein , Monosodium Glutamate, have to be, Citric Acid, Artificial Color [Yellow 6]), Sugar, Dextrose, High Fructose Corn Syrup, Partially Hydrogenated Soybean Oil, Modified Food Starch, Artificial Butter Flavor, Artificial Caramel Color,  so difficult, Artificial Sweeteners (Aspartame, Sucralose, Acesulfame Potassium), Soy Lecithin, Palm Kernel Oil, Sodium Caseinate, Sodium Phosphate, Disodium Inosinate, Disodium Guanylate, Sensitivv App: Make your diet easier , Barley Malt Extract, Potassium Chloride, Calcium Carbonate, Xanthan Gum, Guar Gum, Cellulose Gum, Natural Flavors, Artificial Flavors, Gelatin, Corn Syrup Solids, Salt.  </span>
 
 
 
@@ -76,10 +76,10 @@ const HomeProducts = () => {
         style={{
           opacity: isVisible,
           display: isVisible.to((value) => (value === 0 ? 'none' : 'block')),
+          zIndex: 2,
           fontFamily: 'Helvetica',
           fontSize: '40px',
           position: 'absolute', // También está sobrepuesto
-          backgroundColor: '#FFFFFF',
           top: 0,
           left: 0,
           width: '100%',
@@ -89,6 +89,8 @@ const HomeProducts = () => {
           alignItems: 'center',
           padding:"30px", 
           textAlign: 'justify',
+          transition: 'opacity 0.5s ease-in-out', // Smooth transition
+
         }}
       >
 
@@ -104,7 +106,7 @@ const HomeProducts = () => {
 <span style={{ color: '#000000' }}>so difficult</span>
 <span style={{ color: '#FFFFFF' }}>, Artificial Sweeteners (Aspartame, Sucralose, Acesulfame Potassium), Soy Lecithin, Palm Kernel Oil, Sodium Caseinate, Sodium Phosphate, Disodium Inosinate, Disodium Guanylate,</span>
 <span style={{ color: '#000000' }}>Sensitivv App: Make your diet easier</span>
-<span style={{ color: '#FFFFFF' }}>, Barley Malt Extract, Potassium Chloride, Calcium Carbonate, Xanthan Gum, Guar Gum, Cellulose Gum, Natural Flavors, Artificial Flavors, Gelatin, Corn Syrup Solids, Salt.</span>
+<span style={{ color: '#FFFFFF' }}>, Barley Malt Extract, Potassium Chlori.</span>
  
  
   </p>
@@ -117,9 +119,15 @@ const HomeProducts = () => {
       <div style={{ height: '100vh', backgroundColor: '#FFFFFF' }} />
       <div style={{ height: '100vh', backgroundColor: '#FFFFFF' }}>
         <p style={{ textAlign: 'center', marginTop: '50px', fontSize: '1.5rem' }}>
-          Some text below 920px
         </p>
-        <div className="aosdifasdifjasdl">sdf</div>
+        <div className="aosdifasdifjasdl"></div>
+        <div className="aosdifasdifjasdl2">
+            <div className='blockoimko1'>
+                first cell
+
+            </div>
+
+        </div>
       </div>
       <div className="aosdifasdifjasdl3">
   <p>© 2024 - Sensitivv. Todos los derechos reservados.</p>

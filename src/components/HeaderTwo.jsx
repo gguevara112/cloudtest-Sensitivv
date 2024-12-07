@@ -21,7 +21,7 @@ const Header = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="containerHeader">
+    <div className="containerHeader2">
       <div className="headerContentSplit">
         <div className='hamIconAndSearch'>
           <div className='hamAndIconn'>

@@ -1,7 +1,8 @@
 
 .aosdifasdifjasdl{
-    border:2px solid black;
-    background-color: aqua;
+    background: linear-gradient(to top, grey, white); /* Grey to white gradient */
+
+    height: 200px;
 }
 
 .innnninnnkk{
@@ -18,12 +19,32 @@
     padding: 20px 60px;
     font-family: Helvetica, Arial, sans-serif;
   }
-  
+
+
   .aosdifasdifjasdl3 p {
     margin: 0;
     font-size: 1rem;
   }
   
+  .aosdifasdifjasdl2 {
+
+    display: flex; /* Flexbox para centrar contenido */
+    justify-content: center; /* Centrado horizontal */
+    align-items: flex-start; /* Atraer hacia arriba */
+    height: 100vh; /* Altura completa para centrar respecto a la pantalla */
+    margin: 20px;
+  }  
+  .blockoimko1 {
+    max-width: 920px; /* Ancho máximo */
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Sombras */
+    border-radius: 8px; /* Bordes redondeados opcionales */
+    text-align: center; /* Centrar texto */
+    min-width: 200px; /* Ancho mínimo */
+  }
+  
+
   .footer-links {
     list-style: none;
     padding: 0;

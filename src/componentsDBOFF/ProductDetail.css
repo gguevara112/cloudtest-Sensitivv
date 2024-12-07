@@ -59,6 +59,7 @@
     flex-direction: column;
     justify-content: center;
     flex: 1;
+    max-width: 890px;
 }
 
 .product-info h2 {
@@ -131,6 +132,7 @@
 
 /* Contenedor Wishlist y Notas en una fila */
 .wishlist-notes-container {
+    max-width: 1170px;  
     border-top: 1px solid #ddd;
     display: flex;
     align-items: flex-start;
