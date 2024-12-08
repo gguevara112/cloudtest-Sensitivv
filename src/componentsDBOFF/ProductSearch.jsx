@@ -1,4 +1,3 @@
-// ProductSearch.jsx
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProductContext } from '../ProductContext';
@@ -9,29 +8,31 @@ import './ProductSearch.css';
 
 const ProductSearch = () => {
   const navigate = useNavigate();
-  const { searchResults, searchTerm } = useProductContext(); // Obtener el término de búsqueda
-  const userId = localStorage.getItem('userId'); // Obtener el ID del usuario de localStorage
+  const { searchResults, searchTerm } = useProductContext();
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    // Limpiar cualquier productId anterior al cargar el componente
     localStorage.removeItem('selectedProductId');
   }, []);
 
-  const handleProductClick = async (id) => {
+  const handleProductClick = async (id, source) => {
     try {
       // Guardar en la tabla history antes de redirigir
-      await axios.post(`http://localhost:5001/api/history`, {
-        userID: userId,
-        itemID: id,
-        dateAccessed: new Date(),
-      });
+      if (source === 'off') {
+        await axios.post(`http://localhost:5001/api/history`, {
+          userID: userId,
+          itemID: id,
+          dateAccessed: new Date(),
+        });
+      }
 
       // Guardar el nuevo productId en localStorage
       localStorage.setItem('selectedProductId', id);
 
-      navigate('/product');
+      // Redirigir según el origen del producto
+      navigate(source === 'off' ? '/product' : '/product');
     } catch (error) {
-      console.error("Error al guardar en el historial:", error);
+      console.error('Error al guardar en el historial:', error);
     }
   };
 
@@ -40,26 +41,48 @@ const ProductSearch = () => {
       <Header />
       <div className="pageSplit">
         <SidebarTwo />
-
-        <div className='containerResults'>
-          {/* Agregar el encabezado de resultados de búsqueda */}
+        <div className="containerResults">
           <div className="search-header3e">
             Resultados de búsqueda para: "<span>{searchTerm}</span>"
           </div>
-          
-          <div className="products-list text-center">
+
+          {/* Resultados de tu base de datos */}
+          <div className="plainProductsSection">
+
             <div className="row row-cols-auto">
               {searchResults
-                .filter((product) => product.image_url) // Filtrar productos con imagen
-                .map((product) => (
-                  <div className="col" key={product.code}>
-                    <button className="containerProduct" onClick={() => handleProductClick(product.code)} >
+                .filter((result) => result.source === 'plain')
+                .map((result) => (
+                  <div className="col" key={result._id}>
+                    <button
+                      className="containerProduct2"
+                      onClick={() => handleProductClick(result._id, result.source)}
+                    >
+                      <div className="plainProductName">{result.name}</div>
+                    </button>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          <br /> {/* Separador visual */}
+
+          {/* Resultados de OpenFoodFacts */}
+          <div className="offProductsSection">
+
+            <div className="row row-cols-auto">
+              {searchResults
+                .filter((result) => result.source === 'off')
+                .map((result) => (
+                  <div className="col" key={result.code}>
+                    <button
+                      className="containerProduct"
+                      onClick={() => handleProductClick(result.code, result.source)}
+                    >
                       <div className="imgProduct">
-                        <img src={product.image_url} alt={product.product_name} />
+                        <img src={result.image_url} alt={result.product_name} />
                       </div>
-                      <div className="nameProduct">
-                        {product.product_name}
-                      </div>
+                      <div className="nameProduct">{result.product_name}</div>
                     </button>
                   </div>
                 ))}

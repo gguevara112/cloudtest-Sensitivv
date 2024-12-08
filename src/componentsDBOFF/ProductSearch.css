@@ -21,6 +21,7 @@
     width: 100%; /* Limitar el ancho del contenedor */
     overflow-y: scroll;
     height: calc(100vh - 66px);
+    padding-left: 30px;
 
 }
 
@@ -39,6 +40,26 @@
 }
 
 .containerProduct:hover {
+    border: 2px solid #dee2e7;
+    background-color: #dee2e7;
+}
+
+
+.containerProduct2 {
+    background-color: #f2f3f6;
+    width: 220px;
+    height: 50px;
+    border: 2px solid #f2f3f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+
+    border-radius: 8px;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.containerProduct2:hover {
     border: 2px solid #dee2e7;
     background-color: #dee2e7;
 }
@@ -115,4 +136,14 @@
         gap: 5px;
         padding: 10px;
     }
+  }
+
+.plainProductsSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; /* Asegura que los elementos se alineen al inicio */
+    gap: 0; /* Elimina el espacio entre elementos */
+    margin: 0; /* Asegura que no haya márgenes */
+    padding: 0; /* Asegura que no haya relleno */
   }

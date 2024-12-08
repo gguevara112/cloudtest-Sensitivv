@@ -440,9 +440,9 @@ app.post('/api/google-login', async (req, res) => {
   const { token } = req.body;
 
   try {
-    const ticket = await client.verifyIdToken({
+    const ticket = await clientG.verifyIdToken({
       idToken: token,
-      audience: 'TU_CLIENT_ID',
+      audience: '785282538969-nhq7ursh8lkblr90a9rvi0qlg2ejjqmk.apps.googleusercontent.com',
     });
     const payload = ticket.getPayload();
     const userId = payload['sub'];
@@ -453,6 +453,53 @@ app.post('/api/google-login', async (req, res) => {
     res.status(401).json({ error: 'Token inválido' });
   }
 });
+
+
+// Endpoint para buscar en la colección 'plainproducts'
+app.get('/api/plainproducts', async (req, res) => {
+  const { search } = req.query;
+  try {
+    const database = client.db('sensitivv');
+    const collection = database.collection('plainproducts');
+    const results = await collection
+      .find({ name: { $regex: search, $options: 'i' } }) // Coincidencias parciales, case-insensitive
+      .toArray();
+    res.json(results);
+  } catch (error) {
+    console.error('Error buscando en plainproducts:', error);
+    res.status(500).json({ error: 'Error buscando en plainproducts' });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
