@@ -24,30 +24,45 @@ const ProductDetailForUser = () => {
   useEffect(() => {
     const fetchUserProductDetails = async () => {
       try {
-        // Obtener las notas
-        const notesResponse = await axios.get(`http://localhost:5001/api/productnotes/${userId}/${selectedProductId}`);
-        setNotes(notesResponse.data?.note || ''); // Usa la nota de la respuesta o un valor vacío
+
   
-        // Obtener la reacción
-        const sensitivityResponse = await axios.get(`http://localhost:5001/api/listsensitivity/${userId}/${selectedProductId}`);
+        // Obtener la reacción de sensibilidad
+        const sensitivityResponse = await axios.get(
+          `http://localhost:5001/api/listsensitivity/${userId}/${selectedProductId}`
+        );
         if (sensitivityResponse.data?.category) {
           const category = sensitivityResponse.data.category;
-          setSelectedButton(category === 'Reactive' ? 0 : category === 'Sensitive' ? 1 : 2);
+          setSelectedButton(
+            category === 'Reactive'
+              ? 0
+              : category === 'Sensitive'
+              ? 1
+              : 2
+          );
+        } else {
+          setSelectedButton(null); // Restablecer si no hay datos
         }
   
         // Verificar si está en la wishlist
-        const wishlistResponse = await axios.get(`http://localhost:5001/api/wishlist/${userId}/${selectedProductId}`);
+        const wishlistResponse = await axios.get(
+          `http://localhost:5001/api/wishlist/${userId}/${selectedProductId}`
+        );
         setIsInWishlist(wishlistResponse.data !== null);
+
+        // Obtener las notas
+        const notesResponse = await axios.get(
+          `http://localhost:5001/api/productnotes/${userId}/${selectedProductId}`
+        );
+        setNotes(notesResponse.data?.note || '');
+
       } catch (error) {
-        console.error(t('MnOpQrStUvWx26'), error); // Error al cargar datos
+        console.error("Error al cargar detalles del producto:", error);
       }
     };
   
     if (userId && selectedProductId) fetchUserProductDetails();
-  }, [userId, selectedProductId, t]);
+  }, [userId, selectedProductId]);
   
-  const handleNotesChange = (event) => setNotes(event.target.value);
-
   const handleNotesSave = async () => {
     setIsSaving(true);
     try {
@@ -55,16 +70,24 @@ const ProductDetailForUser = () => {
         userID: userId,
         itemID: selectedProductId,
         note: notes,
-        dateCreated: new Date(),
       });
-      setShowToast(true); // Mostrar el toast
-      setTimeout(() => setShowToast(false), 3000); // Ocultar el toast después de 3 segundos
+      // Vuelve a cargar los detalles después de guardar
+      if (userId && selectedProductId) {
+        await fetchUserProductDetails();
+      }
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     } catch (error) {
-      console.error(t('MnOpQrStUvWx27'), error); // Error al guardar notas
+      console.error("Error al guardar notas:", error);
     } finally {
       setIsSaving(false);
     }
   };
+  
+  
+  const handleNotesChange = (event) => setNotes(event.target.value);
+
+
 
 const handleButtonClick = async (buttonIndex) => {
   setSelectedButton(buttonIndex);

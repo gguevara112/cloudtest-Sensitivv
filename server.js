@@ -173,20 +173,28 @@ app.put('/api/users/:id', async (req, res) => {
       res.status(500).json({ error: "Error en el servidor" });
     }
   });
-  
+
+
+  // Endpoint para guardar o actualizar una nota de producto
   app.post('/api/productnotes', async (req, res) => {
     try {
-      const { userID, itemID, note, dateCreated } = req.body;
+      const { userID, itemID, note } = req.body;
       const database = client.db('sensitivv');
       const collection = database.collection('productnotes');
   
-      await collection.insertOne({ userID, itemID, note, dateCreated });
-      res.status(201).json({ message: "Nota guardada exitosamente" });
+      await collection.updateOne(
+        { userID, itemID }, // Filtro para encontrar la nota existente
+        { $set: { note } }, // Campos a actualizar
+        { upsert: true } // Crea un nuevo documento si no existe
+      );
+  
+      res.status(201).json({ message: "Nota guardada o actualizada exitosamente" });
     } catch (error) {
-      console.error("Error al guardar la nota:", error);
-      res.status(500).json({ error: "Error al guardar la nota" });
+      console.error("Error al guardar o actualizar la nota:", error);
+      res.status(500).json({ error: "Error al guardar o actualizar la nota" });
     }
   });
+  
   
 // Endpoint para asignar la categoría de sensibilidad
 app.post('/api/listsensitivity', async (req, res) => {
