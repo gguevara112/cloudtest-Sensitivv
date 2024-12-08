@@ -82,11 +82,15 @@
     outline: none;
 }
 
+.sdfsdfdsfsdffffff{
+    margin-top: 20px;
+}
+
 /* Botón de login */
 .login-button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #e20100;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
@@ -95,6 +99,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 10px;
+    margin-bottom: 10px; 
 }
 
 .login-button:hover {

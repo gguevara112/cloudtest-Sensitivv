@@ -10,13 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "@react-spring/parallax": "^9.7.5",
     "@react-spring/web": "^9.7.5",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
+    "google-auth-library": "^9.15.0",
     "i18next": "^23.16.4",
     "i18next-browser-languagedetector": "^8.0.0",
+    "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
     "masonry-layout": "^4.2.2",
     "mdb-react-ui-kit": "^9.0.0",

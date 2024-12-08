@@ -3,12 +3,39 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import './Login.css';
+import { GoogleLogin } from '@react-oauth/google';
+import {jwtDecode} from 'jwt-decode'; // Necesitamos decodificar el token
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const handleGoogleSuccess = (credentialResponse) => {
+    try {
+      // Decodificar el JWT del credentialResponse
+      const decoded = jwtDecode(credentialResponse.credential);
+      const userId = decoded.sub; // El ID único del usuario
+      const name = decoded.name; // Nombre del usuario
+
+      console.log('UserId:', userId);
+      console.log('Name:', name);
+
+      // Opcional: Guarda estos valores en localStorage
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('userName', name);
+      navigate('/home');  
+
+      // Aquí puedes enviar el token o los datos al backend si es necesario
+    } catch (error) {
+      console.error('Error al procesar las credenciales de Google:', error);
+    }
+  };
+
+  const handleGoogleError = () => {
+    console.error('Error al iniciar sesión con Google');
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -96,6 +123,15 @@ const Login = () => {
             {t('QkPsYwVzBfHt')}
           </button>
         </form>
+        <div>
+      {/* Botón de inicio de sesión con Google */}
+      <div className="sdfsdfdsfsdffffff">
+        <GoogleLogin
+          onSuccess={handleGoogleSuccess}
+          onError={handleGoogleError}
+        />
+      </div>
+    </div>
         <div className="login-footer mt-4">
           <button onClick={handleSignUpClick} className="btn btn-link">
             {t('ZrNxYfQwGbLt')}
