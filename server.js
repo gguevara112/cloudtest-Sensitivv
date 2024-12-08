@@ -275,20 +275,6 @@ app.get('/api/productnotes/:userID/:itemID', async (req, res) => {
 
 
 
-// Obtener la wishlist de un usuario
-app.get('/api/wishlist/:userID', async (req, res) => {
-  try {
-    const { userID } = req.params;
-    const database = client.db('sensitivv');
-    const collection = database.collection('wishlist');
-
-    const wishlistItems = await collection.find({ userID }).toArray();
-    res.status(200).json(wishlistItems);
-  } catch (error) {
-    console.error("Error al obtener la wishlist:", error);
-    res.status(500).json({ error: "Error al obtener la wishlist" });
-  }
-});
 
 
   // Eliminar un producto de la wishlist
@@ -326,6 +312,26 @@ app.get('/api/wishlist/:userID', async (req, res) => {
   }
 });
 
+// Verificar si un ítem está en la wishlist
+app.get('/api/wishlist/:userID/:itemID', async (req, res) => {
+  try {
+    const { userID, itemID } = req.params;
+    const database = client.db('sensitivv');
+    const collection = database.collection('wishlist');
+
+    // Buscar el ítem en la wishlist del usuario
+    const wishlistItem = await collection.findOne({ userID, itemID });
+
+    if (wishlistItem) {
+      res.status(200).json(wishlistItem); // El ítem está en la wishlist
+    } else {
+      res.status(404).json(null); // El ítem no está en la wishlist
+    }
+  } catch (error) {
+    console.error("Error al verificar la wishlist:", error);
+    res.status(500).json({ error: "Error al verificar la wishlist" });
+  }
+});
 
 
 
