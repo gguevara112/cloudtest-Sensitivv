@@ -520,6 +520,31 @@ app.post('/api/productIngredients', async (req, res) => {
 
 
 
+// Obtener la categoría de sensibilidad de un ingrediente
+// Endpoint para obtener la categoría de sensibilidad de un producto
+app.get('/api/productIngredients/:userID/:itemID', async (req, res) => {
+  try {
+    const { userID, itemID } = req.params;
+    const database = client.db('sensitivv');
+    const collection = database.collection('productIngredients');
+
+    // Busca la categoría del producto para el usuario
+    const entry = await collection.findOne({ userID, itemID });
+
+    if (!entry) {
+      return res.status(404).json({ message: "El producto no tiene una categoría asignada para este usuario." });
+    }
+
+    res.status(200).json({ category: entry.category });
+  } catch (error) {
+    console.error("Error al obtener la categoría de sensibilidad:", error);
+    res.status(500).json({ error: "Error al obtener la categoría de sensibilidad." });
+  }
+});
+
+
+
+
 
 
 

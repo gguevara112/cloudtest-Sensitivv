@@ -134,12 +134,13 @@ const handleButtonClick = async (buttonIndex) => {
             itemID: ingredient, // Publica cada ingrediente como un itemID
             category, // Categoría seleccionada
           });
-          window.location.reload();
+
           console.log(`Ingrediente guardado: ${ingredient}`, response.data.message);
         } catch (error) {
           console.error(`Error al guardar el ingrediente ${ingredient}:`, error);
         }
-      }
+      }          
+      window.location.reload();
     } else {
       console.warn('No se encontraron ingredientes para este producto.');
     }
