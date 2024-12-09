@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next'; // Importar hook de traducción
+
 import axios from 'axios';
 import TestPopup from '../components/GlobalComponents/TestPopup';
 import './ProductDetail.css';
 
 const ProductDetailForUser = () => {
+
   const [product, setProduct] = useState(null);
   const [notes, setNotes] = useState('');
   const [isSaving, setIsSaving] = useState(false);
@@ -132,6 +134,7 @@ const handleButtonClick = async (buttonIndex) => {
             itemID: ingredient, // Publica cada ingrediente como un itemID
             category, // Categoría seleccionada
           });
+          window.location.reload();
           console.log(`Ingrediente guardado: ${ingredient}`, response.data.message);
         } catch (error) {
           console.error(`Error al guardar el ingrediente ${ingredient}:`, error);
