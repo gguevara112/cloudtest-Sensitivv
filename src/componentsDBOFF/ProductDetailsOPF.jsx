@@ -170,6 +170,52 @@ const ProductDetailsOPF = () => {
       ))
     : 'No email found'}
 </p>
+<p>mayo</p>
+
+<p>mayo</p>
+
+{/* Coincidencias entre ingredientes y userEmail */}
+<div className="matches">
+  <h3>Matching Ingredients</h3>
+  <p>
+  <strong>Ingredients:</strong> {parsedIngredients.split(', ').map((ingredient, index, array) => {
+      // Normalizar el ingrediente actual
+      const normalizedIngredient = ingredient.toLowerCase().trim();
+
+      // Buscar coincidencias en userEmail y obtener el índice
+      const matchingIndex = userEmail.findIndex(
+        (emailItem) => emailItem.toLowerCase().trim() === normalizedIngredient
+      );
+
+      // Obtener la categoría si hay coincidencia
+      const category = matchingIndex !== -1 ? userEmail2[matchingIndex] : null;
+
+      // Determinar el color según la categoría
+      let color;
+      switch (category) {
+        case "Reactive":
+          color = "#e00000";
+          break;
+        case "Sensitive":
+          color = "#ecc900";
+          break;
+        case "Safe":
+          color = "#88d82c";
+          break;
+        default:
+          color = "black"; // Sin coincidencia
+      }
+
+      return (
+        <span key={index} style={{ color }}>
+          {ingredient}
+          {index < array.length - 1 && ', '}
+        </span>
+      );
+    })}
+  </p>
+</div>
+
 
 
         <p>
