@@ -149,34 +149,12 @@ const ProductDetailsOPF = () => {
         <img src={product.image_url} alt={product.product_name} />
       </div>
       <div className="product-info">
-        <h2>User ID: {userId}</h2>
+      <h2>{product.product_name}</h2>
         <p>
-  <strong>Email ({userEmail.length}):</strong>{' '}
-  {userEmail.length > 0 
-    ? userEmail.map((email, index) => (
-        <span key={index}>
-          {email}{index < userEmail.length - 1 && ', '}
-        </span>
-      ))
-    : 'No email found'}
-</p>
-<p>
-  <strong>Email ({userEmail2.length}):</strong>{' '}
-  {userEmail2.length > 0 
-    ? userEmail2.map((email, index) => (
-        <span key={index}>
-          {email}{index < userEmail2.length - 1 && ', '}
-        </span>
-      ))
-    : 'No email found'}
-</p>
-<p>mayo</p>
-
-<p>mayo</p>
-
+          <strong>Barcode:</strong> {product.code}
+        </p>
 {/* Coincidencias entre ingredientes y userEmail */}
-<div className="matches">
-  <h3>Matching Ingredients</h3>
+
   <p>
   <strong>Ingredients:</strong> {parsedIngredients.split(', ').map((ingredient, index, array) => {
       // Normalizar el ingrediente actual
@@ -214,54 +192,16 @@ const ProductDetailsOPF = () => {
       );
     })}
   </p>
-</div>
+
 
 
 
         <p>
           <strong>Brand:</strong> {product.brands}
         </p>
-        <p>
-          <strong>Barcode:</strong> {product.code}
-        </p>
-        <p className="ingredients">
-          <strong>Ingredients:</strong> {product.ingredients_text || "No ingredients available"}
-        </p>
 
-        {/* Ingredientes parseados */}
-        <div className="parsed-ingredients">
-          <h3>Parsed Ingredients</h3>
-          <p>{parsedIngredients || 'No parsed ingredients available.'}</p>
-        </div>
 
-        {/* Coincidencias de sensibilidad */}
-        <div className="sensitivity-matches">
-          <h3>Sensitivity Matches</h3>
-          <pre>{sensitivityMatches || 'No sensitivity matches found.'}</pre>
-        </div>
 
-        {/* Ítems del usuario */}
-        <div className="user-items">
-          <h3>User Items</h3>
-          <ul>
-            {userItems.length > 0 ? (
-              (() => {
-                const itemList = [];
-                for (let i = 0; i < Math.min(2, userItems.length); i++) {
-                  const item = userItems[i];
-                  itemList.push(
-                    <li key={item._id}>
-                      <strong>{item.itemID}</strong> - Category: {item.category}
-                    </li>
-                  );
-                }
-                return itemList;
-              })()
-            ) : (
-              <p>No user items found</p>
-            )}
-          </ul>
-        </div>
       </div>
     </div>
   );
