@@ -519,44 +519,79 @@ app.post('/api/productIngredients', async (req, res) => {
 });
 
 
-
-// Obtener la categoría de sensibilidad de un ingrediente
-// Endpoint para obtener la categoría de sensibilidad de un producto
 app.get('/api/productIngredients/:userID/:itemID', async (req, res) => {
   try {
     const { userID, itemID } = req.params;
+
+    // Normalizar el itemID para evitar problemas de formato
+    const normalizedItemID = itemID.toLowerCase().trim();
+
     const database = client.db('sensitivv');
     const collection = database.collection('productIngredients');
 
-    // Busca la categoría del producto para el usuario
-    const entry = await collection.findOne({ userID, itemID });
+    // Buscar en la base de datos
+    const entry = await collection.findOne({
+      userID,
+      itemID: normalizedItemID,
+    });
 
     if (!entry) {
-      return res.status(404).json({ message: "El producto no tiene una categoría asignada para este usuario." });
+      return res.status(404).json({ message: "No hay categoría asociada para este ingrediente." });
     }
 
     res.status(200).json({ category: entry.category });
   } catch (error) {
     console.error("Error al obtener la categoría de sensibilidad:", error);
-    res.status(500).json({ error: "Error al obtener la categoría de sensibilidad." });
+    res.status(500).json({ error: "Error interno al obtener la categoría de sensibilidad." });
   }
 });
 
 
 
 
+app.get('/api/productIngredients/:userID', async (req, res) => {
+  try {
+    const { userID } = req.params;
+
+    const database = client.db('sensitivv');
+    const collection = database.collection('listsensitivity');
+
+    // Obtener solo los primeros 2 elementos asociados al userID
+    const items = await collection.find({ userID }).limit(2).toArray();
+
+    if (!items || items.length === 0) {
+      return res.status(404).json({ error: "No items found for this userID" });
+    }
+
+    res.status(200).json(items);
+  } catch (error) {
+    console.error("Error al obtener los elementos:", error);
+    res.status(500).json({ error: "Error al obtener los elementos" });
+  }
+});
 
 
 
-
-
-
-
-
-
-
-
-
+  // Endpoint para obtener información del usuario por ID
+  app.get('/api/users2/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const database = client.db('sensitivv');
+      const collection = database.collection('productIngredients');
+  
+      // Encuentra todos los documentos que coincidan con el userID
+      const users = await collection.find({ userID: id }).toArray();
+      if (users.length === 0) {
+        return res.status(404).json({ error: "No users found" });
+      }
+  
+      res.status(200).json(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).json({ error: "Error fetching users" });
+    }
+  });
+  
 
 
 
