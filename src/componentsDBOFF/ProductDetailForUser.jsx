@@ -122,11 +122,25 @@ const handleButtonClick = async (buttonIndex) => {
       category,
     });
 
-    const responsoe = await axios.post(`http://localhost:5001/api/productIngredients`, {
-      userID: userId,
-      itemID: product.ingredients_text ,
-      category,
-    });
+    if (product.ingredients_text) {
+      const ingredients = product.ingredients_text.split(',').map((ingredient) => ingredient.trim());
+    
+      for (const ingredient of ingredients) {
+        try {
+          const response = await axios.post(`http://localhost:5001/api/productIngredients`, {
+            userID: userId,
+            itemID: ingredient, // Publica cada ingrediente como un itemID
+            category, // Categoría seleccionada
+          });
+          console.log(`Ingrediente guardado: ${ingredient}`, response.data.message);
+        } catch (error) {
+          console.error(`Error al guardar el ingrediente ${ingredient}:`, error);
+        }
+      }
+    } else {
+      console.warn('No se encontraron ingredientes para este producto.');
+    }
+    
 
     // Mostrar el mensaje de éxito    
     if (response.status === 200 || response.status === 201) {
