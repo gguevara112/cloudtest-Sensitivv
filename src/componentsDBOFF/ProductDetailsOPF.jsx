@@ -9,6 +9,7 @@ const ProductDetailsOPF = () => {
   const [sensitivityMatches, setSensitivityMatches] = useState('');
   const [userItems, setUserItems] = useState([]); // Estado para los ítems del usuario
   const [userEmail, setUserEmail] = useState([]);
+  const [userEmail2, setUserEmail2] = useState([]);
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
@@ -36,6 +37,30 @@ const ProductDetailsOPF = () => {
         setUserEmail([]); // Manejo de errores
       }
     };
+
+    const fetchUserEmail2 = async () => {
+      try {
+        if (!userId) {
+          console.error("UserId not found in localStorage.");
+          return;
+        }
+    
+        // Obtener información del usuario (lista de documentos)
+        const response = await axios.get(`http://localhost:5001/api/users2/${userId}`);
+        
+        if (response.data.length > 0) {
+          const itemIDs2 = response.data.map(doc => doc.category); // Extraer todos los itemID
+          setUserEmail2(itemIDs2); // Guardar la lista en el estado
+        } else {
+          console.error("No documents found for the user.");
+          setUserEmail2([]); // Asegúrate de manejar el caso sin resultados
+        }
+      } catch (error) {
+        console.error("Error al obtener el correo del usuario:", error);
+        setUserEmail2([]); // Manejo de errores
+      }
+    };
+    
     
 
     const fetchUserItems = async () => {
@@ -105,6 +130,7 @@ const ProductDetailsOPF = () => {
 
     // Llamadas para obtener datos del usuario, sus ítems y detalles del producto
     fetchUserEmail();
+    fetchUserEmail2();
     fetchUserItems();
     if (selectedProductId) {
       fetchProductDetails();
@@ -125,7 +151,7 @@ const ProductDetailsOPF = () => {
       <div className="product-info">
         <h2>User ID: {userId}</h2>
         <p>
-  <strong>Email:</strong>{' '}
+  <strong>Email ({userEmail.length}):</strong>{' '}
   {userEmail.length > 0 
     ? userEmail.map((email, index) => (
         <span key={index}>
@@ -134,6 +160,17 @@ const ProductDetailsOPF = () => {
       ))
     : 'No email found'}
 </p>
+<p>
+  <strong>Email ({userEmail2.length}):</strong>{' '}
+  {userEmail2.length > 0 
+    ? userEmail2.map((email, index) => (
+        <span key={index}>
+          {email}{index < userEmail2.length - 1 && ', '}
+        </span>
+      ))
+    : 'No email found'}
+</p>
+
 
         <p>
           <strong>Brand:</strong> {product.brands}
