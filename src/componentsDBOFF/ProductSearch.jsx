@@ -69,25 +69,29 @@ const ProductSearch = () => {
 
           {/* Resultados de OpenFoodFacts */}
           <div className="offProductsSection">
-
-            <div className="row row-cols-auto">
-              {searchResults
-                .filter((result) => result.source === 'off')
-                .map((result) => (
-                  <div className="col" key={result.code}>
-                    <button
-                      className="containerProduct"
-                      onClick={() => handleProductClick(result.code, result.source)}
-                    >
-                      <div className="imgProduct">
-                        <img src={result.image_url} alt={result.product_name} />
-                      </div>
-                      <div className="nameProduct">{result.product_name}</div>
-                    </button>
-                  </div>
-                ))}
+  <div className="row row-cols-auto">
+    {searchResults
+      .filter((result) => result.source === 'off' && result.image_url) // Filtrar productos de "off" con imagen
+      .map((result) => (
+        <div className="col" key={result.code}>
+          <button
+            className="containerProduct"
+            onClick={() => handleProductClick(result.code, result.source)}
+          >
+            <div className="imgProduct">
+              <img src={result.image_url} alt={result.product_name} />
             </div>
-          </div>
+            <div className="nameProduct">{result.product_name}</div>
+          </button>
+        </div>
+      ))}
+  </div>
+</div>
+
+
+
+
+
         </div>
       </div>
     </div>
