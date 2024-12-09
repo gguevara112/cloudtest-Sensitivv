@@ -5,6 +5,7 @@ import TestPopup from '../components/GlobalComponents/TestPopup';
 import './ProductDetail.css';
 
 const ProductDetailForUser = () => {
+  const [product, setProduct] = useState(null);
   const [notes, setNotes] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [selectedButton, setSelectedButton] = useState(null);
@@ -23,6 +24,27 @@ const ProductDetailForUser = () => {
 
   useEffect(() => {
     const fetchUserProductDetails = async () => {
+      const selectedProductId = localStorage.getItem('selectedProductId');
+      if (selectedProductId) {
+        const fetchProductDetails = async () => {
+          try {
+            const response = await axios.get(
+              `https://world.openfoodfacts.org/api/v0/product/${selectedProductId}.json`
+            );
+            if (response.data && response.data.product) {
+              setProduct(response.data.product);
+            } else {
+              console.error("Producto no encontrado en Open Food Facts.");
+              setProduct(null);
+            }
+          } catch (error) {
+            console.error("Error al cargar detalles del producto:", error);
+          } finally {
+          }
+        };
+  
+        fetchProductDetails();
+      }
       try {
 
   
@@ -100,6 +122,12 @@ const handleButtonClick = async (buttonIndex) => {
       category,
     });
 
+    const responsoe = await axios.post(`http://localhost:5001/api/productIngredients`, {
+      userID: userId,
+      itemID: product.ingredients_text ,
+      category,
+    });
+
     // Mostrar el mensaje de éxito    
     if (response.status === 200 || response.status === 201) {
       console.log(response.data.message); // Mensaje desde el backend
@@ -129,6 +157,9 @@ const handleButtonClick = async (buttonIndex) => {
     }
   };
 
+  if (!product) return <p></p>; // Producto no encontrado
+
+
   return (
     <div className="wishlist-notes-container">
       <div className="buttonsss">
@@ -150,7 +181,7 @@ const handleButtonClick = async (buttonIndex) => {
       </div>
 
       <div className="notes-section">
-        <h3>{t('MnOpQrStUvWx31')}</h3> {/* Notes */}
+        <h3>{t('MnOpQrStUvWx31')}</h3> {/* Notes */}      
         <textarea value={notes}  maxLength="1500" onChange={handleNotesChange} placeholder={t('MnOpQrStUvWx32')} />
         <button className="save-notes-button" onClick={handleNotesSave} disabled={isSaving}>
           {isSaving ? t('MnOpQrStUvWx33') : t('MnOpQrStUvWx34')}

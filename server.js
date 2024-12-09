@@ -487,6 +487,37 @@ app.get('/api/plainproducts', async (req, res) => {
 
 
 
+// Endpoint para asignar la categoría de sensibilidad
+app.post('/api/productIngredients', async (req, res) => {
+  try {
+    const { userID, itemID, category } = req.body;
+    const database = client.db('sensitivv');
+    const collection = database.collection('productIngredients');
+
+    // Verifica si ya existe una categoría para este producto y usuario
+    const existingEntry = await collection.findOne({ userID, itemID });
+
+    if (existingEntry) {
+      if (existingEntry.category === category) {
+        return res.status(200).json({ message: "El producto ya está en esta categoría." });
+      }
+      // Si la categoría es diferente, actualiza la entrada
+      await collection.updateOne(
+        { userID, itemID },
+        { $set: { category } }
+      );
+      return res.status(200).json({ message: "Categoría actualizada exitosamente." });
+    }
+
+    // Si no existe, inserta una nueva entrada
+    await collection.insertOne({ userID, itemID, category });
+    res.status(201).json({ message: "Categoría de sensibilidad guardada exitosamente." });
+  } catch (error) {
+    console.error("Error al guardar la categoría de sensibilidad:", error);
+    res.status(500).json({ error: "Error al guardar la categoría de sensibilidad." });
+  }
+});
+
 
 
 
