@@ -549,26 +549,6 @@ app.get('/api/productIngredients/:userID/:itemID', async (req, res) => {
 
 
 
-app.get('/api/productIngredients/:userID', async (req, res) => {
-  try {
-    const { userID } = req.params;
-
-    const database = client.db('sensitivv');
-    const collection = database.collection('listsensitivity');
-
-    // Obtener solo los primeros 2 elementos asociados al userID
-    const items = await collection.find({ userID }).limit(2).toArray();
-
-    if (!items || items.length === 0) {
-      return res.status(404).json({ error: "No items found for this userID" });
-    }
-
-    res.status(200).json(items);
-  } catch (error) {
-    console.error("Error al obtener los elementos:", error);
-    res.status(500).json({ error: "Error al obtener los elementos" });
-  }
-});
 
 
 

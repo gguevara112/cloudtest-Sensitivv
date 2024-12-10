@@ -1,40 +1,47 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useProductContext } from '../ProductContext';
 import "../components/Header.css";
 
 const ProductSearchBox = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setSearchResults, setSearchTerm: setContextSearchTerm } = useProductContext();
   const { t } = useTranslation();
 
-  const handleSearch = async (event) => {
+  useEffect(() => {
+    const handleSearchUpdate = () => {
+      const term = localStorage.getItem('searchTerm');
+      if (term) {
+        // Aquí puedes actualizar los resultados basados en el nuevo término
+        fetchResults(term);
+      }
+    };
+  
+    window.addEventListener('searchTermUpdated', handleSearchUpdate);
+  
+    return () => {
+      window.removeEventListener('searchTermUpdated', handleSearchUpdate);
+    };
+  }, []);
+  
+
+  const handleSearch = (event) => {
     if (event.key === 'Enter') {
       setLoading(true);
       try {
-        // Llamadas paralelas a OpenFoodFacts y a la base de datos
-        const [chileResponse, usaResponse, plainProductsResponse] = await Promise.all([
-          axios.get(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=1&tagtype_0=countries&tag_contains_0=contains&tag_0=Chile`),
-          axios.get(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=1&tagtype_0=countries&tag_contains_0=contains&tag_0=United States`),
-          axios.get(`http://localhost:5001/api/plainproducts?search=${searchTerm}`),
-        ]);
+        // Guardar el término de búsqueda en localStorage
+        localStorage.setItem('searchTerm', searchTerm);
   
-        // Combinar los resultados, priorizando los de la base de datos
-        const combinedResults = [
-          ...plainProductsResponse.data.map((p) => ({ ...p, source: 'plain' })), // Fuente: Base de datos
-          ...chileResponse.data.products.map((p) => ({ ...p, source: 'off' })), // Fuente: OpenFoodFacts
-          ...usaResponse.data.products.map((p) => ({ ...p, source: 'off' })),
-        ].slice(0, 20);
+        // Notificar un evento personalizado para actualizar la búsqueda
+        window.dispatchEvent(new Event('searchTermUpdated'));
   
-        setContextSearchTerm(searchTerm);
-        setSearchResults(combinedResults);
-        navigate('/productsearch');
+        // Redirigir si estás en otra página
+        if (window.location.pathname !== '/productsearch') {
+          navigate('/productsearch');
+        }
       } catch (error) {
-        console.error('Error al buscar productos:', error);
+        console.error('Error al manejar la búsqueda:', error);
       } finally {
         setLoading(false);
       }
@@ -46,7 +53,7 @@ const ProductSearchBox = () => {
     <div className="search-box-container">
       <input
         type="text"
-        placeholder={t('AbCdEfGhIjKl')}
+        placeholder={t('AbCdEfGhIjKl')} // Traducir el texto del placeholder
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleSearch}

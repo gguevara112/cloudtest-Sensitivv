@@ -116,7 +116,7 @@ const ProductDetailForUser = () => {
 const handleButtonClick = async (buttonIndex) => {
   setSelectedButton(buttonIndex);
   const category = buttonIndex === 0 ? 'Reactive' : buttonIndex === 1 ? 'Sensitive' : 'Safe';
-
+  setIsSaving(true);
   try {
     const response = await axios.post(`http://localhost:5001/api/listsensitivity`, {
       userID: userId,
@@ -138,6 +138,8 @@ const handleButtonClick = async (buttonIndex) => {
           console.log(`Ingrediente guardado: ${ingredient}`, response.data.message);
         } catch (error) {
           console.error(`Error al guardar el ingrediente ${ingredient}:`, error);
+        } finally {
+          setIsSaving(false);
         }
       }          
       window.location.reload();
