@@ -117,22 +117,6 @@ i18n
           MnOpQrStUvWx38: "Start test",
           MnOpQrStUvWx40: "Correctly saved ",  
           MnOpQrStUvWx41: "Item Removed",
-
-
-
-
-
-          
-          
-          
-          
-
-          
-
-
-          
-          
-    
           
         }
       },

@@ -84,7 +84,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box2">
         <div className='ikmnbhgyuiolpoiuygvbenasd'>              
-          <div className='svgIconSensitivv'>
+          <div className='svgIconSensitivvds'>
                   <svg width="42" height="42" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"> {/* Gradientes para los círculos pequeños */} <defs> <linearGradient id="redGradient" x1="50%" y1="0%" x2="50%" y2="100%"> <stop offset="0%" style={{ stopColor: "#ff4d4d", stopOpacity: 1 }} /> <stop offset="100%" style={{ stopColor: "#ed0000", stopOpacity: 1 }} /> </linearGradient> <linearGradient id="yellowGradient" x1="50%" y1="0%" x2="50%" y2="100%"> <stop offset="0%" style={{ stopColor: "#ffeb3b", stopOpacity: 1 }} /> <stop offset="100%" style={{ stopColor: "#ffdb22", stopOpacity: 1 }} /> </linearGradient> <linearGradient id="greenGradient" x1="50%" y1="0%" x2="50%" y2="100%"> <stop offset="0%" style={{ stopColor: "#a4e643", stopOpacity: 1 }} /> <stop offset="100%" style={{ stopColor: "#80d425", stopOpacity: 1 }} /> </linearGradient> </defs> {/* Círculo principal en blanco sin sombras */} <circle cx="50" cy="50" r="50" fill="white" stroke="gray" strokeWidth="1" /> {/* Círculos pequeños con gradiente lineal */} <circle cx="40" cy="30" r="10" fill="url(#redGradient)" /> <circle cx="70" cy="30" r="10" fill="url(#yellowGradient)" /> <circle cx="70" cy="60" r="10" fill="url(#greenGradient)" /> </svg>
           </div>
           <div className='brand'>Sensitivv</div> 

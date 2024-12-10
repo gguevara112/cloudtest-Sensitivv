@@ -1,145 +1,90 @@
-import React from 'react';
-import { useSpring, animated } from '@react-spring/web';
-import { useScroll } from '@react-spring/web';
+import React, { useState, useEffect } from 'react';
 import HeaderTwo from '../components/HeaderTwo';
 import './LandingPage.css';
 
-const HomeProducts = () => {
-  const { scrollYProgress } = useScroll();
+// Componente Banner
+function Banner() {
+  const backgroundImageUrl = "https://www.shutterstock.com/image-vector/beautiful-clouds-abstract-white-blue-600nw-2477952373.jpg"; // URL de la imagen
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Animación de opacidad para el texto principal
-  const fadeStyle = useSpring({
-    opacity: scrollYProgress.to([0, 0.5], [1, 0]),
-  });
-
-  // Animación de visibilidad para "Some static text next to the fading one"
-  const isVisible = scrollYProgress.to((val) => (val < 0.66 ? 1 : 0));
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // Pequeño retraso antes de que aparezca
+  }, []);
 
   return (
-    <div className='innnninnnkk' >
+    <div
+      className={`banner ${isVisible ? 'banner-visible' : ''}`}
+      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+    >
+      <div className="banner3-text">
+        <svg className='iiikkkikiknnkk'  width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="white" stroke="black" strokeWidth="0" />
+          <circle cx="40" cy="30" r="10" fill="#ed0000ff" />
+          <circle cx="70" cy="30" r="10" fill="#ffdb22ff" />
+          <circle cx="70" cy="60" r="10" fill="#80d425ff" />
+        </svg>
+        <br />
+        Sensitivv
+        <br />
+      <div className='lsdflklksjfd'> App for tracking, testing, and organizing your food sensitivities</div>
+      </div>
+    </div>
+  );
+}
+
+const HomeProducts = () => {
+  return (
+    <div className="landing-page">
       <HeaderTwo />
+      <div className="content222">
+        <Banner />
+        <div className="blockoimko1">
+          <h2 className="title">Recognize</h2>
+          <p className="body">
+            Know what you are eating and how it affects you. Sensitivv helps
+            you identify the ingredients in your food and their impact on your
+            health, so you can make better decisions.
+          </p>
+          <div className="image-containedr">
+            <img src="src/pages/asSgbhFWRR.png" alt="Recognize section" />
+          </div>
+        </div>
 
-<div
-  style={{
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    textAlign: 'center',
-  }}
->
-  {/* Contenedor para ambos textos */}
-  <div
-    style={{
-      position: 'relative', // Permite el posicionamiento absoluto de los hijos
-      width: '100%', // Asegura que el contenedor ocupe el espacio necesario
-      height: '100%',
-      
-    }}
-  >
-    {/* Texto principal */}
-    <animated.div
-  style={{
-    ...fadeStyle,
-    zIndex: 10, // Prioridad más alta para que esté por encima de los otros elementos 
-    fontFamily: 'Helvetica',
-    fontSize: '40px',
-    position: 'absolute', // Posiciona el texto en el mismo espacio que el otro
-    top: 0,
+        <div className="blockoimko1">
+          <h2 className="title">Test</h2>
+          <p className="body">
+            Keep track of the ingredients you consume and how they make you
+            feel. Sensitivv helps you organize your diet and understand how it
+            affects your body.
+          </p>
+          <div className="image-container">
+            <img src="src/pages/tttgrrtggert.png" alt="Test section" />
+          </div>
+        </div>
 
-    left: 0,
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding:"30px", 
-    textAlign: 'justify',
-  }}
->
-  <p>
-
-
-  <span style={{ fontWeight: 'bold' , backgroundColor: "white"}}>Ingredients:  </span><span style={{  backgroundColor: "white"}}>Enriched Corn Meal (Corn Meal, Ferrous Sulfate, Niacin, Thiamin, Riboflavin, Folic Acid), Vegetable Oil (Corn, Canola, and/or Sunflower Oil), Cheese Seasoning (Whey, Cheddar Cheese [Milk,  It doesn't, Salt, Enzymes], Canola Oil, Maltodextrin [Made from Corn Oil s], Natural and Artificial Flavors, Whey Protein , Monosodium Glutamate, have to be, Citric Acid, Artificial Color [Yellow 6]), Sugar, Dextrose, High Fructose Corn Syrup, Partially Hydrogenated Soybean Oil, Modified Food Starch, Artificial Butter Flavor, Artificial Caramel Color,  so difficult, Artificial Sweeteners (Aspartame, Sucralose, Acesulfame Potassium), Soy Lecithin, Palm Kernel Oil, Sodium Caseinate, Sodium Phosphate, Disodium Inosinate, Disodium Guanylate, Sensitivv App: Make your diet easier , Barley Malt Extract, Potassium Chloride, Calcium Carbonate, Xanthan Gum, Guar Gum, Cellulose Gum, Natural Flavors, Artificial Flavors, Gelatin, Corn Syrup Solids, Salt.  </span>
-
-
-
-  
-  </p>
-</animated.div>
-
-
-    {/* Texto secundario */}
-
-        
-        <animated.div
-        style={{
-          opacity: isVisible,
-          display: isVisible.to((value) => (value === 0 ? 'none' : 'block')),
-          zIndex: 2,
-          fontFamily: 'Helvetica',
-          fontSize: '40px',
-          position: 'absolute', // También está sobrepuesto
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          marginTop: '-370px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding:"30px", 
-          textAlign: 'justify',
-          transition: 'opacity 0.5s ease-in-out', // Smooth transition
-
-        }}
-      >
-
-        <p>
-  <span style={{ fontWeight: 'bold' , color: '#FFFFFF' }}>Ingredients:</span>
-<span style={{ color: '#FFFFFF' }}>
-  Enriched Corn Meal (Corn Meal, Ferrous Sulfate, Niacin, Thiamin, Riboflavin, Folic Acid), Vegetable Oil (Corn, Canola, and/or Sunflower Oil), Cheese Seasoning (Whey, Cheddar Cheese [Milk,
-</span>
-<span style={{ color: '#000000' }}>It doesn't</span>
-<span style={{ color: '#FFFFFF' }}>, Salt, Enzymes], Canola Oil, Maltodextrin [Made from Corn Oil s], Natural and Artificial Flavors, Whey Protein, Monosodium Glutamate,</span>
-<span style={{ color: '#000000' }}>have to be</span>
-<span style={{ color: '#FFFFFF' }}>, Citric Acid, Artificial Color [Yellow 6]), Sugar, Dextrose, High Fructose Corn Syrup, Partially Hydrogenated Soybean Oil, Modified Food Starch, Artificial Butter Flavor, Artificial Caramel Color,</span>
-<span style={{ color: '#000000' }}>so difficult</span>
-<span style={{ color: '#FFFFFF' }}>, Artificial Sweeteners (Aspartame, Sucralose, Acesulfame Potassium), Soy Lecithin, Palm Kernel Oil, Sodium Caseinate, Sodium Phosphate, Disodium Inosinate, Disodium Guanylate,</span>
-<span style={{ color: '#000000' }}>Sensitivv App: Make your diet easier</span>
-<span style={{ color: '#FFFFFF' }}>, Barley Malt Extract, Potassium Chlori.</span>
- 
- 
-  </p>
-    </animated.div>
-  </div>  
-</div>
-
-
-      <div style={{ height: '100vh', backgroundColor: '#FFFFFF' }} />
-      <div style={{ height: '100vh', backgroundColor: '#FFFFFF' }} />
-      <div style={{ height: '100vh', backgroundColor: '#FFFFFF' }}>
-        <p style={{ textAlign: 'center', marginTop: '50px', fontSize: '1.5rem' }}>
-        </p>
-        <div className="aosdifasdifjasdl"></div>
-        <div className="aosdifasdifjasdl2">
-            <div className='blockoimko1'>
-                first cell
-
-            </div>
-
+        <div className="blockoimko1">
+          <h2 className="title">Organize</h2>
+          <p className="body">
+            Add reactions to your food and organize your diet according to
+            your needs. Sensitivv helps you manage your diet and keep track of
+            the ingredients you consume, and show it effortlessly.
+          </p>
+          <div className="image-container">
+            <img src="src/pages/dddwfsdfdsrrrvsvvrv.png" alt="Organize section" />
+          </div>
         </div>
       </div>
-      <div className="aosdifasdifjasdl3">
-  <p>© 2024 - Sensitivv. Todos los derechos reservados.</p>
-  <ul className="footer-links">
-    <li>Acerca de</li>
-    <li>Privacidad</li>
-    <li>Contacto</li>
-    <li>Soporte</li>
-
-  </ul>
-</div>
-
+      <footer className="footerd">
+        <p>© 2024 - Sensitivv. Todos los derechos reservados.</p>
+        <ul className="footer-linddks">
+          <li>Acerca de</li>
+          <li>Privacidad</li>
+          <li>Contacto</li>
+          <li>Soporte</li>
+        </ul>
+      </footer>
     </div>
   );
 };

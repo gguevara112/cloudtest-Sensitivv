@@ -3,7 +3,6 @@ import axios from 'axios';
 import './WidgetGridTest.css';
 import { useTranslation } from 'react-i18next'; // Importar el hook de traducción
 
-
 const WidgetGridTest = () => {
   const { t } = useTranslation(); // Hook de traducción
   const [product, setProduct] = useState({
@@ -12,8 +11,9 @@ const WidgetGridTest = () => {
     lastTested: null,
     DaysTestSelected: 0,
   });
-
+  const [selectedButton, setSelectedButton] = useState(null); // Estado para el botón seleccionado
   const userId = localStorage.getItem('userId');
+  const selectedProductId = localStorage.getItem('selectedProductId');
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -42,7 +42,7 @@ const WidgetGridTest = () => {
   }, [userId]);
 
   const calculateRemainingTime = () => {
-    if (!product.lastTested || !product.DaysTestSelected) return t('MnOpQrStUvWx2') ;
+    if (!product.lastTested || !product.DaysTestSelected) return t('MnOpQrStUvWx2');
 
     const lastTestDate = new Date(product.lastTested);
     const endTime = new Date(lastTestDate.getTime() + product.DaysTestSelected * 24 * 60 * 60 * 1000);
@@ -56,24 +56,43 @@ const WidgetGridTest = () => {
     const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
 
     return `${days > 0 ? `${days} ${t(days > 1 ? 'MnOpQrStUvWx8' : 'MnOpQrStUvWx9')} ` : ''}` +
-    `${hours > 0 ? `${hours} ${t(hours > 1 ? 'MnOpQrStUvWx10' : 'MnOpQrStUvWx11')} ` : ''}` +
-    `${minutes} ${t(minutes > 1 ? 'MnOpQrStUvWx12' : 'MnOpQrStUvWx13')}`;
-};
+      `${hours > 0 ? `${hours} ${t(hours > 1 ? 'MnOpQrStUvWx10' : 'MnOpQrStUvWx11')} ` : ''}` +
+      `${minutes} ${t(minutes > 1 ? 'MnOpQrStUvWx12' : 'MnOpQrStUvWx13')}`;
+  };
 
   const buttonLabels = [
-    { text: t('MnOpQrStUvWx4'), color: '#ed0000ff' },
-    { text: t('MnOpQrStUvWx5'), color: '#ffdb22ff' },
-    { text: t('MnOpQrStUvWx6'), color: '#80d425ff' },
+    { text: t('MnOpQrStUvWx4'), color: '#ed0000ff', category: 'Reactive' },
+    { text: t('MnOpQrStUvWx5'), color: '#ffdb22ff', category: 'Sensitive' },
+    { text: t('MnOpQrStUvWx6'), color: '#80d425ff', category: 'Safe' },
   ];
 
+  const handleButtonClick = async (buttonIndex) => {
+    setSelectedButton(buttonIndex);
+    const category = buttonLabels[buttonIndex].category;
+
+    try {
+      const response = await axios.post(`http://localhost:5001/api/listsensitivity`, {
+        userID: userId,
+        itemID: selectedProductId,
+        category,
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        console.log(response.data.message); // Mensaje desde el backend
+      }
+    } catch (error) {
+      console.error("Error al guardar la categoría:", error);
+    }
+  };
+
   return (
-    <div className="buttonContainer2">
-      <div className="testTrakerButton2">
-        <div className="containerProduct2">
-          <div className="imgProduct2">
+    <div className="xbuttonContainer2">
+      <div className="xtestTrakerButton2">
+        <div className="xcontainerProduct2">
+          <div className="ximgProduct2">
             <img src={product.imgSrc} alt={product.name} />
           </div>
-          <div className="nameProduct2">
+          <div className="xnameProduct2">
             {product.name}
           </div>
         </div>
@@ -81,19 +100,21 @@ const WidgetGridTest = () => {
           <div className="timeleftfortestNumber">
             {calculateRemainingTime()}
           </div>
-          <div className="timeleftfortestText">
-           {t('MnOpQrStUvWx7')}
+          <div className="xtimeleftfortestText">
+            {t('MnOpQrStUvWx7')}
           </div>
         </div>
       </div>
 
-      <div className="right-buttons">
+      <div className="xright-buttons">
         <div className="selection-buttons-rect">
           {buttonLabels.map((button, index) => (
             <button
               key={index}
+              onClick={() => handleButtonClick(index)}
               style={{
-                backgroundColor: button.color,
+                backgroundColor: selectedButton === index ? button.color : '#cccccc',
+                color: selectedButton === index ? '#ffffff' : '#000000',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

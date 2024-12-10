@@ -1,74 +1,111 @@
-
-.aosdifasdifjasdl{
-    background: linear-gradient(to top, grey, white); /* Grey to white gradient */
-
-    height: 200px;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.innnninnnkk{
-    position: relative;
-    height: 300vh;
-    scrollbar-width: none; /* Ocultar barra de desplazamiento en Firefox */
+.landing-page {
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
+.banner {
+  background-size: cover;
+  background-position: center;
+  height: 606px;   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:auto ;
+  opacity: 0; /* Oculto inicialmente */
+  transition: opacity 2s ease-in-out; /* Transición gradual */
+}
 
-.aosdifasdifjasdl3 {
-    background-color: #f9f9f9; /* Azul brillante */
-    text-align: left;
-    align-items: left ;
-    padding: 20px 60px;
-    font-family: Helvetica, Arial, sans-serif;
-  }
+.banner-visible {
+  opacity: 1; /* Visible cuando se monte */
+}
 
+.iiikkkikiknnkk{
+  display: flex; /* Habilita flexbox */
+  flex-direction: column; /* Asegura que el texto y el SVG estén en columnas */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  width: 100px;
+} 
 
-  .aosdifasdifjasdl3 p {
-    margin: 0;
-    font-size: 1rem;
+.banner3-text {
+    margin:auto;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    display: flex; /* Habilita flexbox */
+    flex-direction: column; /* Asegura que el texto y el SVG estén en columnas */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
   }
   
-  .aosdifasdifjasdl2 {
+.blockoimko1 {
+  max-width: 920px;
+  background-color: #ffffff;
+  padding: 60px;
+  border-bottom: 2px solid #cccccc;
 
-    display: flex; /* Flexbox para centrar contenido */
-    justify-content: center; /* Centrado horizontal */
-    align-items: flex-start; /* Atraer hacia arriba */
-    height: 100vh; /* Altura completa para centrar respecto a la pantalla */
-    margin: 20px;
-  }  
-  .blockoimko1 {
-    max-width: 920px; /* Ancho máximo */
-    background-color: #ffffff; /* Fondo blanco */
-    padding: 20px; /* Espaciado interno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Sombras */
-    border-radius: 8px; /* Bordes redondeados opcionales */
-    text-align: center; /* Centrar texto */
-    min-width: 200px; /* Ancho mínimo */
-  }
-  
+  text-align: left;
+  min-width: 200px;
+  margin: 2% auto;
+}
 
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    max-width: 700px;
-    color:black;
-  }
-  
-  .footer-links li {
-    display: inline;
-    color:black;
-  }
-  
-  .footer-links a {
+.blockoimko1 .title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #000;
+}
 
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-links a:hover {
-    color: #00b7ff; /* Amarillo brillante al pasar el cursor */
-  }
-  
+.blockoimko1 .body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.image-containedr img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footerd {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: center;
+  margin-top: 250px;
+}
+
+.footerd p {
+  margin: 0;
+
+  font-size: 14px;
+  color: #888;
+}
+
+.footer-linddks {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-linddks li {
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+}
+
+.footer-linddks li:hover {
+  text-decoration: underline;
+}

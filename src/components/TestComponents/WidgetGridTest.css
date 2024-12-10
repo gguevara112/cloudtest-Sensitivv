@@ -1,4 +1,4 @@
-.buttonContainer2 {
+.xbuttonContainer2 {
   display: flex;
   padding-bottom: 34px;
   gap: 20px;
@@ -7,7 +7,7 @@
   padding-right: 80px;
 }
 
-.testTrakerButton2 {
+.xtestTrakerButton2 {
   border: 2px solid #f9f9f9;
   background-color: #f9f9f9;
   height: 115%;
@@ -23,7 +23,7 @@
 .testTrakerButton:hover {
   border: 2px solid #f9f9f9;
 }
-.containerProduct2 {
+.xcontainerProduct2 {
   background-color: white;
   height: 100%;
   width: 40%;
@@ -35,7 +35,7 @@
 }
 
 
-.timeleftfortest {
+.xtimeleftfortest {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,6 +43,7 @@
   width: 60%; /* Asegura que el contenedor ocupe todo el ancho disponible */
   height: 100%; /* Asegura que el contenedor ocupe toda la altura disponible */
   text-align: center; /* Centra el texto en línea */
+  margin-left: 20px; 
 }
 
 
@@ -50,14 +51,21 @@
   font-size: 40px;
   font-weight: bold;
   color: #1c1c1c;
-  margin: 0;
+  margin-left: 20px;
+}
+
+.xtimeleftfortestText{
+  margin-left: 20px; 
+
 }
 
 
-.imgProduct2 {
+
+
+.ximgProduct2 {
   background-color: white;
-  width: 120px; /* Ajuste para que la imagen sea más pequeña que el contenedor */
-  height: 120px;
+  width: 90px; /* Ajuste para que la imagen sea más pequeña que el contenedor */
+  height: 120px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,24 +83,23 @@
 
 }
 
-.nameProduct2 {
+.xnameProduct2 {
   color: #1c1c1c;
   font-size: 16px;
   text-align: left;
   width: 130px; 
-  padding-left: 10px;
   overflow: hidden;
   white-space: wrap;
   text-overflow: ellipsis;
 
 }
 
-.right-buttons {
+.xright-buttons {
   display: flex;
   flex-direction: column;
 }
 
-.color-button {
+.xcolor-button {
   padding: 0px;
   margin: 0px;
 }
