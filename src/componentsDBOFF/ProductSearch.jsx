@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProductContext } from '../ProductContext';
+import { useTranslation } from 'react-i18next'; // Importar el hook de traducción
 import axios from 'axios';
 import Header from '../components/Header';
 import SidebarTwo from '../components/UIComponents/SidebarTwo';
@@ -9,6 +10,7 @@ import './ProductSearch.css';
 const ProductSearch = () => {
   const navigate = useNavigate();
   const { searchResults, setSearchResults, setSearchTerm } = useProductContext();
+  const { t } = useTranslation(); // Hook de traducción
   const userId = localStorage.getItem('userId');
   const [localSearchTerm, setLocalSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
@@ -75,7 +77,7 @@ const ProductSearch = () => {
           ) : (
             <>
               <div className="search-header3e">
-                Resultados de búsqueda para: "<span>{localSearchTerm}</span>"
+                {t('ZxCvBnMqWeRt2')} "<span>{localSearchTerm}</span>"
               </div>
 
               <div className="plainProductsSection">
@@ -125,3 +127,4 @@ const ProductSearch = () => {
 };
 
 export default ProductSearch;
+

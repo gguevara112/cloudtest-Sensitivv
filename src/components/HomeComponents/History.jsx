@@ -54,7 +54,7 @@ const History = () => {
             </div>
             <div className='aksdjfb'>{t('AZDfGhJkLqWe')}</div> {/* Visto recientemente */}
           </div>
-          <div className='containerResults'>
+          <div className='containerResults234'>
             <div className="products-list text-center">
               <div className="row row-cols-auto">
                 {recentlyViewed.map((product) => (

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'; // Importar el hook de traducci�
 const WidgetGridTest = () => {
   const { t } = useTranslation(); // Hook de traducción
   const [product, setProduct] = useState({
-    name: 'Producto Estático',
+    name: '---',
     imgSrc: 'https://via.placeholder.com/100',
     lastTested: null,
     DaysTestSelected: 0,

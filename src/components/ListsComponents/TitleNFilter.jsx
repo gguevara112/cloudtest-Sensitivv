@@ -60,13 +60,14 @@ const TitleNFilter = () => {
       <div className="zxcvHeader">{t('QwErTyUiOpAs')}</div>
       <div className="qwerFiltsdfersd">
       <div class="button-containerz">
-        <button class="circle-buttonz">Cereales*</button>
-        <button class="circle-buttonz">Verduras</button>
-        <button class="circle-buttonz">Lácteos</button>
-        <button class="circle-buttonz">Panadería</button>
-        <button class="circle-buttonz">Frutas</button>
-        <button class="circle-buttonz">Bebidas</button>
-        <button class="circle-buttonz">Snacks</button>
+      <button class="circle-buttonz">Cereals*</button>
+      <button class="circle-buttonz">Vegetables</button>
+      <button class="circle-buttonz">Dairy</button>
+      <button class="circle-buttonz">Bakery</button>
+      <button class="circle-buttonz">Fruits</button>
+      <button class="circle-buttonz">Beverages</button>
+      <button class="circle-buttonz">Snacks</button>
+
       </div>
 
 
