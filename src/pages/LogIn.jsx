@@ -78,7 +78,7 @@ const Login = () => {
 
   const handleSignUpClick = () => {
     navigate('/signup');
-  };
+  };   
 
   return (
     <div className="login-container">
@@ -124,7 +124,7 @@ const Login = () => {
           </button>
         </form>
         <div>
-      {/* Botón de inicio de sesión con Google */}
+      {/* Botón de inicio de sesión con Google, no funciona */}
       <div className="sdfsdfdsfsdffffff">
         <GoogleLogin
           onSuccess={handleGoogleSuccess}
